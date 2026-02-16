@@ -80,6 +80,16 @@
             flex-wrap: wrap;
         }
 
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #722F37;
+            cursor: pointer;
+            padding: 0.3rem;
+        }
+
         .nav-chapter {
             font-size: 0.85rem;
             color: #2C1810;
@@ -686,7 +696,8 @@
     <nav class="chapter-nav" id="chapterNav">
         <div class="nav-content">
             <div class="nav-title">How Universities Sell Dreams</div>
-            <div class="nav-chapters">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+            <div class="nav-chapters" id="navChapters">
                 <a href="#intro" class="nav-chapter" data-section="intro">Introduction</a>
                 <a href="#layer1" class="nav-chapter" data-section="layer1">Layer 1</a>
                 <a href="#layer2" class="nav-chapter" data-section="layer2">Layer 2</a>
@@ -1193,6 +1204,25 @@
     </div>
 
     <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navChapters = document.getElementById('navChapters');
+        
+        if (navToggle) {
+            navToggle.addEventListener('click', () => {
+                navChapters.classList.toggle('open');
+                navToggle.textContent = navChapters.classList.contains('open') ? '✕' : '☰';
+            });
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-chapter').forEach(link => {
+                link.addEventListener('click', () => {
+                    navChapters.classList.remove('open');
+                    navToggle.textContent = '☰';
+                });
+            });
+        }
+
         // Progress Bar
         const progressBar = document.getElementById('progressBar');
         const chapterNav = document.getElementById('chapterNav');
