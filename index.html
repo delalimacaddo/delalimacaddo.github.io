@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Canadian Universities Sell Dreams to West Africa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', 'Georgia', serif;
+            line-height: 1.9;
+            color: #222;
+            background: #f9f7f4;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            height: 100vh;
+            background: #2a2621;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #f9f7f4;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.9;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .hero .byline {
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0.7;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin-top: 2rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(to bottom, #f9f7f4, transparent);
+            animation: scrollPulse 2s infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .content-section {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .intro-graph {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .intro-graph.first {
+            font-size: 1.6rem;
+            line-height: 1.7;
+        }
+
+        .intro-graph.large {
+            font-size: 1.8rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .intro-graph strong {
+            font-weight: 600;
+            color: #1a1512;
+        }
+
+        .intro-graph em {
+            font-style: italic;
+        }
+
+        .stat-callout {
+            background: #fff;
+            border-left: 4px solid #c9a87c;
+            padding: 2.5rem 3rem;
+            margin: 4rem 0;
+            font-size: 1.4rem;
+            color: #2a2621;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            line-height: 1.8;
+        }
+
+        .stat-highlight {
+            background: #fff3cd;
+            padding: 2rem 2.5rem;
+            margin: 3rem 0;
+            border-radius: 6px;
+            font-size: 1.3rem;
+            line-height: 1.7;
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 70vh;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 4rem 0;
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(42, 38, 33, 0.65);
+        }
+
+        .divider-text {
+            position: relative;
+            z-index: 1;
+            color: #f9f7f4;
+            font-size: 3.2rem;
+            font-weight: 400;
+            text-align: center;
+            padding: 0 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .layer-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .layer-number {
+            display: inline-block;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #7d5a3b;
+            border-bottom: 2px solid #c9a87c;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .layer-title {
+            font-size: 3rem;
+            font-weight: 400;
+            color: #2a2621;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+        }
+
+        .layer-subtitle {
+            font-size: 1.9rem;
+            color: #666;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .pullquote {
+            font-size: 2.2rem;
+            line-height: 1.5;
+            font-style: italic;
+            color: #2a2621;
+            margin: 4rem 0;
+            padding-left: 2.5rem;
+            border-left: 4px solid #c9a87c;
+            font-weight: 300;
+        }
+
+        .media-embed {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            background: #fff;
+            min-height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 0;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: scale(0.96);
+            transition: opacity 1.2s ease, transform 1.2s ease;
+        }
+
+        .media-embed.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .embed-container {
+            max-width: 550px;
+            width: 100%;
+            padding: 0 2rem;
+        }
+
+        .embed-container iframe {
+            max-width: 504px;
+            width: 100%;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .media-placeholder {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            background: #e8e2d8;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: scale(0.96);
+            transition: opacity 1.2s ease, transform 1.2s ease;
+        }
+
+        .media-placeholder.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .placeholder-content {
+            text-align: center;
+            padding: 3rem;
+            max-width: 600px;
+        }
+
+        .placeholder-icon {
+            font-size: 4.5rem;
+            margin-bottom: 1.8rem;
+            opacity: 0.35;
+        }
+
+        .placeholder-text {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 1.05rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .three-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin: 4rem auto;
+            max-width: 900px;
+        }
+
+        .column-card {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .column-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .column-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2a2621;
+            margin-bottom: 0.75rem;
+        }
+
+        .column-desc {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .references-section {
+            background: #2a2621;
+            color: #f9f7f4;
+            padding: 5rem 2rem;
+            margin-top: 6rem;
+        }
+
+        .references-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .references-section h3 {
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: #c9a87c;
+        }
+
+        .references-list {
+            list-style: none;
+        }
+
+        .references-list li {
+            margin-bottom: 1.5rem;
+            padding-left: 1.8rem;
+            position: relative;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .references-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c9a87c;
+        }
+
+        .instagram-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #fff;
+            min-height: 400px;
+        }
+
+        .instagram-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+        }
+
+        .card-link {
+            text-decoration: none;
+            display: block;
+        }
+
+        .card-placeholder {
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            transition: opacity 0.3s ease;
+        }
+
+        .instagram-card:hover .card-placeholder {
+            opacity: 0.9;
+        }
+
+        .ig-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .ig-text {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .ig-text strong {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .view-post {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid rgba(255,255,255,0.6);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .instagram-card:hover .view-post {
+            background: rgba(255,255,255,0.2);
+            border-color: white;
+        }
+
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(42, 38, 33, 0.95), rgba(42, 38, 33, 0.85));
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            z-index: 2;
+        }
+
+        .instagram-card:hover .card-overlay {
+            transform: translateY(0);
+        }
+
+        .overlay-text {
+            color: #f9f7f4;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .overlay-text strong {
+            display: block;
+            color: #c9a87c;
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+            letter-spacing: 0.03em;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            .content-section {
+                padding: 3rem 1.5rem;
+            }
+            .intro-graph {
+                font-size: 1.3rem;
+            }
+            .layer-title {
+                font-size: 2.2rem;
+            }
+            .three-columns {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .divider-text {
+                font-size: 2.2rem;
+            }
+            .pullquote {
+                font-size: 1.7rem;
+            }
+            .instagram-card .card-overlay {
+                transform: translateY(0);
+                position: relative;
+                background: #2a2621;
+                margin-top: 0;
+            }
+            
+            .card-placeholder {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>How Canadian Universities Sell Dreams to West Africa</h1>
+            <p class="subtitle">Every year, 122,000 students apply to study in Canada. Behind each application is a carefully crafted story about who belongs and what's possible.</p>
+            <p class="byline">By Delali Mac-Addo</p>
+        </div>
+        <div class="scroll-indicator"></div>
+    </div>
+
+    <!-- Introduction -->
+    <div class="content-section">
+        <p class="intro-graph first">
+            Picture this: You're 22, scrolling Instagram in Lagos or Accra. You see a student who looks like you. They're wearing kente cloth at graduation. They're from Ondo State, Nigeria—maybe the same place as your cousin. They started a business. They're thriving.
+        </p>
+
+        <p class="intro-graph">
+            The caption says: "Discover how the university helped make it happen."
+        </p>
+
+        <p class="intro-graph">
+            That post? It's not an accident.
+        </p>
+
+        <div class="stat-callout">
+            In 2023, Immigration, Refugees and Citizenship Canada processed nearly <strong>122,000 study permit applications</strong> from Nigeria, Ghana, and Cameroon. Each one represents a dream. A family's savings. A vision of the future.
+        </div>
+
+        <p class="intro-graph">
+            But here's what we don't usually ask: <em>How do universities shape that vision?</em> What makes a 22-year-old in West Africa believe that studying in Canada is not just possible, but meant for them?
+        </p>
+
+        <p class="intro-graph">
+            I spent months analyzing the Instagram feeds, websites, and promotional content of two major Canadian universities. I looked at what they post, who they feature, and how they tell stories about postgraduate opportunity.
+        </p>
+
+        <p class="intro-graph">
+            What I found wasn't random. It was a system. A three-layer narrative structure that appears again and again, post after post, story after story.
+        </p>
+
+        <div class="stat-highlight">
+            <strong>Layer One:</strong> They show you someone who looks like you.<br>
+            <strong>Layer Two:</strong> They show you what that person achieved.<br>
+            <strong>Layer Three:</strong> They tell you where it happened.
+        </div>
+
+        <p class="intro-graph">
+            This is how opportunity gets sold. Not through facts or statistics or program descriptions. Through <strong>recognition. Achievement. Affiliation.</strong>
+        </p>
+
+        <p class="intro-graph">
+            And it works because it taps into something deeper than logic. It shapes <em>imagination</em> itself—what you believe is possible, who you see yourself becoming, and where you think you belong.
+        </p>
+
+        <p class="intro-graph">
+            Scroll down. I'll show you exactly how it works.
+        </p>
+    </div>
+
+    <div class="media-placeholder">
+        <div class="placeholder-content">
+            <div class="placeholder-icon">🖼️</div>
+            <div class="placeholder-text">Full-width visual collage</div>
+        </div>
+    </div>
+
+    <!-- Section Divider -->
+    <div class="section-divider" style="background: linear-gradient(rgba(42,38,33,0.7), rgba(42,38,33,0.7)), url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1200 800\'%3E%3Crect fill=\'%232a2621\' width=\'1200\' height=\'800\'/%3E%3C/svg%3E');">
+        <div class="divider-text">Layer One</div>
+    </div>
+
+    <!-- Layer 1 -->
+    <div class="content-section">
+        <div class="layer-header">
+            <div class="layer-number">Layer One</div>
+            <h2 class="layer-title">Someone Like You</h2>
+            <p class="layer-subtitle">"I see myself in this."</p>
+        </div>
+
+        <p class="intro-graph">
+            Scroll through these universities' Instagram accounts and you'll notice something.
+        </p>
+
+        <p class="intro-graph">
+            The posts targeting West African audiences don't lead with program details or admission requirements. They lead with <strong>faces. Names. Places.</strong>
+        </p>
+
+        <p class="intro-graph">
+            "From Lagos." "From Accra." "From Ondo State, Nigeria."
+        </p>
+
+        <p class="intro-graph">
+            You see students in traditional clothing. References to home countries. Cultural organizations. Food from back home celebrated during Black History Month. Kente stoles at graduation.
+        </p>
+
+        <p class="intro-graph">
+            These aren't random details. They're deliberate signals: <em>This place knows where you're from. This place sees you.</em>
+        </p>
+
+        <p class="pullquote">
+            The message is simple: "Someone like me has already done this."
+        </p>
+
+        <p class="intro-graph">
+            Recognition comes first. Before you even think about applying, you need to believe this pathway is meant for people like you.
+        </p>
+    </div>
+
+    <div class="media-embed" style="background: #f9f7f4;">
+        <div style="max-width: 1100px; width: 100%; padding: 2rem;">
+            
+            <!-- Pair 1: Cultural Symbols -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                
+                <!-- Post 1: Ghana Red Red -->
+                <div class="instagram-card">
+                    <a href="https://www.instagram.com/uoft_food/reel/C35cGUyOTeK/?hl=en" target="_blank" class="card-link">
+                        <div class="card-placeholder" style="background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);">
+                            <div class="ig-icon">📸</div>
+                            <div class="ig-text">University of Toronto<br><strong>Red Red Ghana</strong></div>
+                            <div class="view-post">View on Instagram →</div>
+                        </div>
+                    </a>
+                    <div class="card-overlay">
+                        <div class="overlay-text">
+                            <strong>Cultural Food Recognition</strong><br>
+                            "Red Red"—a traditional Ghanaian dish—featured and named during Black History Month. West African food isn't exotic here. It's campus culture.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post 2: Kente Stoles -->
+                <div class="instagram-card">
+                    <a href="https://www.instagram.com/uoft/p/C8nLsPlSx5e/?hl=en" target="_blank" class="card-link">
+                        <div class="card-placeholder" style="background: linear-gradient(135deg, #405de6 0%, #5851db 50%, #833ab4 100%);">
+                            <div class="ig-icon">📸</div>
+                            <div class="ig-text">University of Toronto<br><strong>Kente Stoles Ceremony</strong></div>
+                            <div class="view-post">View on Instagram →</div>
+                        </div>
+                    </a>
+                    <div class="card-overlay">
+                        <div class="overlay-text">
+                            <strong>Cultural Symbols at Graduation</strong><br>
+                            Kente cloth—traditional West African fabric—worn at graduation. Your cultural identity isn't something to hide. It's something to celebrate at your biggest milestone.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pair 2: Geographic Origins -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+
+                <!-- Post 3: Ondo, Nigeria Journey -->
+                <div class="instagram-card">
+                    <a href="https://www.instagram.com/ualbertastudents/p/DNTYsLgpWs2/?hl=en" target="_blank" class="card-link">
+                        <div class="card-placeholder" style="background: linear-gradient(135deg, #f09433 0%, #e6683c 50%, #dc2743 100%);">
+                            <div class="ig-icon">📸</div>
+                            <div class="ig-text">University of Alberta<br><strong>From Ondo, Nigeria</strong></div>
+                            <div class="view-post">View on Instagram →</div>
+                        </div>
+                    </a>
+                    <div class="card-overlay">
+                        <div class="overlay-text">
+                            <strong>Your City. Your Story.</strong><br>
+                            "From Ondo, Nigeria"—not just "from Africa." The city matters. The specificity matters. Active in the Nigerian Students' Association. The journey from West Africa is front and center.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post 4: Ondo State, Nigeria -->
+                <div class="instagram-card">
+                    <a href="https://www.instagram.com/ualbertastudents/p/DNlbQhnAR13/?hl=en" target="_blank" class="card-link">
+                        <div class="card-placeholder" style="background: linear-gradient(135deg, #405de6 0%, #833ab4 50%, #e1306c 100%);">
+                            <div class="ig-icon">📸</div>
+                            <div class="ig-text">University of Alberta<br><strong>From Ondo State, Nigeria</strong></div>
+                            <div class="view-post">View on Instagram →</div>
+                        </div>
+                    </a>
+                    <div class="card-overlay">
+                        <div class="overlay-text">
+                            <strong>Your City. Your Story.</strong><br>
+                            "From Ondo State, Nigeria"—the specificity creates connection. Involvement in Black Students' Association and Pan African networks. You're not just joining a university. You're joining a community.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Divider -->
+    <div class="section-divider" style="background: linear-gradient(rgba(42,38,33,0.7), rgba(42,38,33,0.7)), url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1200 800\'%3E%3Crect fill=\'%232a2621\' width=\'1200\' height=\'800\'/%3E%3C/svg%3E');">
+        <div class="divider-text">Layer Two</div>
+    </div>
+
+    <!-- Layer 2 -->
+    <div class="content-section">
+        <div class="layer-header">
+            <div class="layer-number">Layer Two</div>
+            <h2 class="layer-title">Look What's Possible</h2>
+            <p class="layer-subtitle">"This could be my story."</p>
+        </div>
+
+        <p class="intro-graph">
+            Once you see yourself in the story, the universities show you what's possible.
+        </p>
+
+        <p class="intro-graph">
+            Not with vague promises. With <strong>proof.</strong>
+        </p>
+
+        <p class="intro-graph">
+            A Nigerian graduate named Olugbenga launches Reeddi, a clean-energy company. The number is right there in the post: <strong>3,000+ households and businesses</strong> in Nigeria now have electricity because of his work.
+        </p>
+
+        <p class="intro-graph">
+            Faith, from Ondo State, graduates with a psychology degree. But the post doesn't stop there. It shows her building a photography business. Getting involved in community service. Moving into postgraduate study.
+        </p>
+
+        <p class="intro-graph">
+            These aren't statistics. They're people. With names. With faces. With measurable results.
+        </p>
+
+        <p class="pullquote">
+            Opportunity stops being abstract. It becomes real. Visible. Possible.
+        </p>
+    </div>
+
+    <div class="media-embed">
+        <div class="embed-container">
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7386030016213602304?compact=1" height="399" width="100%" frameborder="0" allowfullscreen="" title="University of Toronto post featuring Olugbenga Olubanjo and Reeddi"></iframe>
+        </div>
+    </div>
+
+    <div class="content-section" style="padding-top: 2rem;">
+        <p class="intro-graph">
+            Notice what just happened. You didn't read a program description. You didn't see admission requirements. You saw <em>someone succeed.</em> Someone with a name. A country. A specific, measurable impact.
+        </p>
+
+        <p class="intro-graph">
+            That's the power of Layer Two. Achievement becomes the evidence. Success becomes the proof.
+        </p>
+    </div>
+
+    <div class="media-placeholder">
+        <div class="placeholder-content">
+            <div class="placeholder-icon">🎬</div>
+            <div class="placeholder-text">University of Alberta: Faith from Ondo State</div>
+        </div>
+    </div>
+
+    <!-- Section Divider -->
+    <div class="section-divider" style="background: linear-gradient(rgba(42,38,33,0.7), rgba(42,38,33,0.7)), url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1200 800\'%3E%3Crect fill=\'%232a2621\' width=\'1200\' height=\'800\'/%3E%3C/svg%3E');">
+        <div class="divider-text">Layer Three</div>
+    </div>
+
+    <!-- Layer 3 -->
+    <div class="content-section">
+        <div class="layer-header">
+            <div class="layer-number">Layer Three</div>
+            <h2 class="layer-title">And Here's Where It Happens</h2>
+            <p class="layer-subtitle">"I know where to go."</p>
+        </div>
+
+        <p class="intro-graph">
+            Now watch what happens in the captions.
+        </p>
+
+        <p class="intro-graph">
+            After showing you Olugbenga's success, the post pivots: <em>"Discover how U of T helped Olugbenga make Reeddi happen through resources, community, and technical support."</em>
+        </p>
+
+        <p class="intro-graph">
+            The university isn't just a location. It's the <strong>reason</strong> the success happened.
+        </p>
+
+        <p class="intro-graph">
+            The posts end with campus imagery. Institutional branding. Calls to action. "Do it here." "Start your journey." "Apply now."
+        </p>
+
+        <p class="intro-graph">
+            The progression is complete:
+        </p>
+
+        <p class="intro-graph" style="text-align: center; font-size: 1.4rem; margin: 2rem 0;">
+            <strong>First:</strong> Here's someone like you.<br>
+            <strong>Then:</strong> Here's what they achieved.<br>
+            <strong>Finally:</strong> Here's where you can do it too.
+        </p>
+
+        <p class="pullquote">
+            The university becomes the bridge between who you are and who you want to become.
+        </p>
+    </div>
+
+    <div class="media-placeholder">
+        <div class="placeholder-content">
+            <div class="placeholder-icon">📊</div>
+            <div class="placeholder-text">Visual diagram: Three-layer structure</div>
+        </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="content-section">
+        <p class="intro-graph large">
+            Three layers. Every time.
+        </p>
+
+        <div class="three-columns">
+            <div class="column-card">
+                <div class="column-icon">🤝</div>
+                <div class="column-title">Recognition</div>
+                <div class="column-desc">Someone like me</div>
+            </div>
+            <div class="column-card">
+                <div class="column-icon">⭐</div>
+                <div class="column-title">Achievement</div>
+                <div class="column-desc">Look what's possible</div>
+            </div>
+            <div class="column-card">
+                <div class="column-icon">🏛️</div>
+                <div class="column-title">Direction</div>
+                <div class="column-desc">Here's where to go</div>
+            </div>
+        </div>
+
+        <p class="intro-graph">
+            This isn't random. This is strategy. This is how you make distant institutions feel accessible. How you turn application numbers into enrollment numbers.
+        </p>
+
+        <p class="intro-graph">
+            And it works because it doesn't feel like marketing. It feels like <strong>possibility.</strong>
+        </p>
+    </div>
+
+    <!-- What This Means -->
+    <div class="content-section">
+        <p class="intro-graph large">
+            But here's what we need to talk about.
+        </p>
+
+        <p class="intro-graph">
+            These stories aren't lies. Olugbenga is real. Faith is real. Their achievements are real.
+        </p>
+
+        <p class="intro-graph">
+            But representation is selective. For every success story you see, there are stories you don't. The student who couldn't afford to stay. The visa that got denied. The graduate who moved back home because the job market didn't work out.
+        </p>
+
+        <p class="intro-graph">
+            Instagram algorithms reward engagement. University branding prioritizes impact. So what gets amplified? The wins. The highlights. The proof that the system works.
+        </p>
+
+        <p class="intro-graph">
+            What stays quiet? Everything else.
+        </p>
+
+        <div class="stat-callout">
+            <strong>If you're a prospective student:</strong> These stories are powerful. Let them inspire you. But ask questions too. What's the full picture? What happens when things don't go according to plan?<br><br>
+            <strong>If you're a university:</strong> You're not just marketing programs. You're shaping futures. The stories you choose to tell—and the ones you don't—matter more than you think.
+        </div>
+    </div>
+
+    <!-- Final -->
+    <div class="content-section">
+        <p class="intro-graph large">
+            Here's what I keep thinking about.
+        </p>
+
+        <p class="intro-graph">
+            Every year, 122,000 people from West Africa apply to study in Canada. Behind each application is a late-night research session. A family conversation. A vision of the future.
+        </p>
+
+        <p class="intro-graph">
+            And that vision? It's shaped by posts like these. By the stories universities choose to tell. By who gets to be visible and who stays in the background.
+        </p>
+
+        <p class="intro-graph" style="text-align: center; font-size: 1.5rem; margin: 3rem 0; font-style: italic;">
+            Recognition. Achievement. Direction.
+        </p>
+
+        <p class="intro-graph">
+            That's the formula. That's how opportunity gets sold.
+        </p>
+
+        <p class="pullquote" style="text-align: center; border: none; padding: 0; margin-top: 4rem;">
+            What you see shapes what you believe is possible. And that shaping of imagination? That might be the most powerful form of representation there is.
+        </p>
+    </div>
+
+    <!-- References -->
+    <div class="references-section">
+        <div class="references-content">
+            <h3>References</h3>
+            <ul class="references-list">
+                <li>Hall, S. (1997). <em>Representation: Cultural Representations and Signifying Practices.</em> SAGE Publications.</li>
+                <li>Straubhaar, J. D. (1991). Beyond media imperialism: Asymmetrical interdependence and cultural proximity. <em>Critical Studies in Mass Communication, 8</em>(1), 39-59.</li>
+                <li>Marwick, A. E. (2013). <em>Status Update: Celebrity, Publicity, and Branding in the Social Media Age.</em> Yale University Press.</li>
+                <li>Van Dijck, J. (2013). <em>The Culture of Connectivity: A Critical History of Social Media.</em> Oxford University Press.</li>
+                <li>Immigration, Refugees and Citizenship Canada (2023). Study permit data and statistics.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.content-section, .media-placeholder, .media-embed').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
