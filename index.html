@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An investigation into how Canadian universities use Instagram storytelling to recruit West African students through a three-layer narrative of recognition, achievement, and direction.">
+    <meta property="og:title" content="How Canadian Universities Sell Dreams to West Africa">
+    <meta property="og:description" content="Every year, 122,000 students apply to study in Canada. Behind each application is a carefully crafted story about who belongs and what's possible.">
+    <meta property="og:type" content="article">
     <title>How Canadian Universities Sell Dreams to West Africa</title>
+    <!-- FIX #4: Import Crimson Text from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,7 +19,6 @@
             box-sizing: border-box;
             scroll-behavior: smooth;
         }
-
         body {
             font-family: 'Crimson Text', 'Georgia', serif;
             line-height: 1.9;
@@ -19,7 +26,23 @@
             background: #FFF8E7;
             overflow-x: hidden;
         }
-
+        /* Skip to content link for accessibility (FIX #9) */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #006B3F;
+            color: #FFF8E7;
+            padding: 0.5rem 1rem;
+            z-index: 10000;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: top 0.3s ease;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
         /* Progress Bar */
         .progress-container {
             position: fixed;
@@ -31,7 +54,6 @@
             z-index: 9999;
             pointer-events: none;
         }
-
         .progress-bar {
             height: 4px;
             background: linear-gradient(90deg, #D4AF37, #006B3F, #722F37);
@@ -39,7 +61,6 @@
             transition: width 0.1s ease;
             pointer-events: none;
         }
-
         /* Chapter Navigation */
         .chapter-nav {
             position: fixed;
@@ -55,11 +76,9 @@
             transition: transform 0.3s ease;
             pointer-events: auto;
         }
-
         .chapter-nav.visible {
             transform: translateY(0);
         }
-
         .nav-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -68,7 +87,6 @@
             align-items: center;
             gap: 1rem;
         }
-
         .nav-title {
             font-size: 0.9rem;
             color: #722F37;
@@ -76,13 +94,11 @@
             font-family: 'Helvetica Neue', Arial, sans-serif;
             white-space: nowrap;
         }
-
         .nav-chapters {
             display: flex;
             gap: 1.5rem;
             flex-wrap: wrap;
         }
-
         .nav-toggle {
             display: none;
             background: none;
@@ -92,7 +108,6 @@
             cursor: pointer;
             padding: 0.3rem;
         }
-
         .nav-chapter {
             font-size: 0.85rem;
             color: #2C1810;
@@ -103,18 +118,40 @@
             transition: all 0.3s ease;
             cursor: pointer;
         }
-
         .nav-chapter:hover {
             background: rgba(212, 175, 55, 0.2);
             color: #006B3F;
         }
-
         .nav-chapter.active {
             background: linear-gradient(135deg, #D4AF37, #C1666B);
             color: #fff;
             font-weight: 600;
         }
-
+        /* FIX #2: Mobile hamburger menu styles */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+            .nav-chapters {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 248, 231, 0.98);
+                padding: 1rem 2rem;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                gap: 0.5rem;
+            }
+            .nav-chapters.open {
+                display: flex;
+            }
+            .nav-chapter {
+                padding: 0.6rem 1rem;
+                font-size: 1rem;
+            }
+        }
         /* Tooltips */
         .tooltip-term {
             position: relative;
@@ -123,7 +160,6 @@
             color: #006B3F;
             font-weight: 500;
         }
-
         .tooltip-content {
             position: absolute;
             bottom: 100%;
@@ -143,7 +179,6 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             font-family: 'Helvetica Neue', Arial, sans-serif;
         }
-
         .tooltip-content::after {
             content: '';
             position: absolute;
@@ -153,12 +188,10 @@
             border: 8px solid transparent;
             border-top-color: #2C1810;
         }
-
         .tooltip-term:hover .tooltip-content {
             opacity: 1;
             transform: translateX(-50%) translateY(-5px);
         }
-
         .tooltip-image {
             width: 100%;
             height: 150px;
@@ -166,21 +199,18 @@
             border-radius: 6px;
             margin-bottom: 0.5rem;
         }
-
         .tooltip-video {
             width: 100%;
             height: 150px;
             border-radius: 6px;
             margin-bottom: 0.5rem;
         }
-
         @media (max-width: 768px) {
             .tooltip-content {
                 width: 220px;
                 font-size: 0.85rem;
             }
         }
-
         .hero {
             height: 100vh;
             background: linear-gradient(135deg, #006B3F 0%, #004D2E 100%);
@@ -192,13 +222,11 @@
             position: relative;
             padding: 2rem;
         }
-
         .hero-content {
             max-width: 900px;
             opacity: 0;
             animation: fadeInUp 1.5s ease forwards;
         }
-
         @keyframes fadeInUp {
             to {
                 opacity: 1;
@@ -209,7 +237,6 @@
                 transform: translateY(30px);
             }
         }
-
         .hero h1 {
             font-size: 3.8rem;
             font-weight: 400;
@@ -217,7 +244,6 @@
             line-height: 1.15;
             letter-spacing: -0.02em;
         }
-
         .hero .subtitle {
             font-size: 1.5rem;
             font-weight: 300;
@@ -225,7 +251,6 @@
             line-height: 1.5;
             margin-bottom: 1rem;
         }
-
         .hero .byline {
             font-size: 1rem;
             font-weight: 300;
@@ -235,7 +260,6 @@
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin-top: 2rem;
         }
-
         .scroll-indicator {
             position: absolute;
             bottom: 60px;
@@ -246,12 +270,10 @@
             background: linear-gradient(to bottom, #D4AF37, transparent);
             animation: scrollPulse 2s infinite;
         }
-
         @keyframes scrollPulse {
             0%, 100% { opacity: 0.3; }
             50% { opacity: 1; }
         }
-
         .content-section {
             max-width: 680px;
             margin: 0 auto;
@@ -260,39 +282,32 @@
             transform: translateY(40px);
             transition: opacity 1s ease, transform 1s ease;
         }
-
         .content-section.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
         .intro-graph {
             font-size: 1.5rem;
             line-height: 1.8;
             margin-bottom: 2rem;
             color: #333;
         }
-
         .intro-graph.first {
             font-size: 1.6rem;
             line-height: 1.7;
         }
-
         .intro-graph.large {
             font-size: 1.8rem;
             margin: 3rem 0;
             text-align: center;
         }
-
         .intro-graph strong {
             font-weight: 600;
             color: #1a1512;
         }
-
         .intro-graph em {
             font-style: italic;
         }
-
         .stat-callout {
             background: #fff;
             border-left: 4px solid #c9a87c;
@@ -303,7 +318,6 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.03);
             line-height: 1.8;
         }
-
         .stat-highlight {
             background: #fff3cd;
             padding: 2rem 2.5rem;
@@ -312,7 +326,6 @@
             font-size: 1.3rem;
             line-height: 1.7;
         }
-
         .section-divider {
             width: 100%;
             height: 70vh;
@@ -325,7 +338,13 @@
             justify-content: center;
             margin: 4rem 0;
         }
-
+        /* FIX #6: Disable parallax on mobile (breaks on iOS) */
+        @media (max-width: 768px) {
+            .section-divider {
+                background-attachment: scroll;
+                height: 50vh;
+            }
+        }
         .section-divider::before {
             content: '';
             position: absolute;
@@ -335,7 +354,6 @@
             bottom: 0;
             background: linear-gradient(135deg, rgba(114, 47, 55, 0.85), rgba(0, 107, 63, 0.85));
         }
-
         .divider-text {
             position: relative;
             z-index: 1;
@@ -347,12 +365,10 @@
             letter-spacing: -0.02em;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-
         .layer-header {
             text-align: center;
             margin-bottom: 3rem;
         }
-
         .layer-number {
             display: inline-block;
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -364,7 +380,6 @@
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
         }
-
         .layer-title {
             font-size: 3rem;
             font-weight: 400;
@@ -372,14 +387,12 @@
             line-height: 1.2;
             margin-bottom: 1.2rem;
         }
-
         .layer-subtitle {
             font-size: 1.9rem;
             color: #C1666B;
             font-weight: 300;
             font-style: italic;
         }
-
         .pullquote {
             font-size: 2.2rem;
             line-height: 1.5;
@@ -390,7 +403,6 @@
             border-left: 5px solid #D4AF37;
             font-weight: 300;
         }
-
         .media-embed {
             width: 100vw;
             position: relative;
@@ -410,25 +422,21 @@
             transform: scale(0.96);
             transition: opacity 1.2s ease, transform 1.2s ease;
         }
-
         .media-embed.visible {
             opacity: 1;
             transform: scale(1);
         }
-
         .embed-container {
             max-width: 550px;
             width: 100%;
             padding: 0 2rem;
         }
-
         .embed-container iframe {
             max-width: 504px;
             width: 100%;
             margin: 0 auto;
             display: block;
         }
-
         .media-placeholder {
             width: 100vw;
             position: relative;
@@ -447,31 +455,26 @@
             transform: scale(0.96);
             transition: opacity 1.2s ease, transform 1.2s ease;
         }
-
         .media-placeholder.visible {
             opacity: 1;
             transform: scale(1);
         }
-
         .placeholder-content {
             text-align: center;
             padding: 3rem;
             max-width: 600px;
         }
-
         .placeholder-icon {
             font-size: 4.5rem;
             margin-bottom: 1.8rem;
             opacity: 0.35;
         }
-
         .placeholder-text {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             font-size: 1.05rem;
             color: #666;
             line-height: 1.7;
         }
-
         .three-columns {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -479,43 +482,36 @@
             margin: 4rem auto;
             max-width: 900px;
         }
-
         .column-card {
             text-align: center;
             padding: 2rem 1rem;
         }
-
         .column-icon {
             font-size: 3rem;
             margin-bottom: 1.5rem;
             opacity: 0.7;
         }
-
         .column-title {
             font-size: 1.4rem;
             font-weight: 600;
             color: #006B3F;
             margin-bottom: 0.75rem;
         }
-
         .column-desc {
             font-size: 1.1rem;
             color: #722F37;
             line-height: 1.6;
         }
-
         .references-section {
             background: linear-gradient(135deg, #2C1810 0%, #1a0f0a 100%);
             color: #FFF8E7;
             padding: 5rem 2rem;
             margin-top: 6rem;
         }
-
         .references-content {
             max-width: 800px;
             margin: 0 auto;
         }
-
         .references-section h3 {
             font-size: 1rem;
             font-weight: 400;
@@ -526,11 +522,9 @@
             font-family: 'Helvetica Neue', Arial, sans-serif;
             color: #c9a87c;
         }
-
         .references-list {
             list-style: none;
         }
-
         .references-list li {
             margin-bottom: 1.5rem;
             padding-left: 1.8rem;
@@ -538,14 +532,12 @@
             line-height: 1.7;
             font-size: 1.05rem;
         }
-
         .references-list li::before {
-            content: '•';
+            content: '\2022';
             position: absolute;
             left: 0;
             color: #c9a87c;
         }
-
         .instagram-card {
             position: relative;
             border-radius: 12px;
@@ -555,17 +547,14 @@
             background: #fff;
             min-height: 400px;
         }
-
         .instagram-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 12px 32px rgba(0,0,0,0.2);
         }
-
         .card-link {
             text-decoration: none;
             display: block;
         }
-
         .card-placeholder {
             height: 400px;
             display: flex;
@@ -578,17 +567,14 @@
             position: relative;
             transition: opacity 0.3s ease;
         }
-
         .instagram-card:hover .card-placeholder {
             opacity: 0.9;
         }
-
         .ig-icon {
             font-size: 4rem;
             margin-bottom: 1.5rem;
             opacity: 0.9;
         }
-
         .ig-text {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             font-size: 1.1rem;
@@ -596,14 +582,12 @@
             margin-bottom: 1.5rem;
             font-weight: 300;
         }
-
         .ig-text strong {
             display: block;
             font-size: 1.4rem;
             font-weight: 600;
             margin-top: 0.5rem;
         }
-
         .view-post {
             font-size: 0.95rem;
             opacity: 0.8;
@@ -613,12 +597,10 @@
             border-radius: 25px;
             transition: all 0.3s ease;
         }
-
         .instagram-card:hover .view-post {
             background: rgba(255,255,255,0.2);
             border-color: white;
         }
-
         .card-overlay {
             position: absolute;
             bottom: 0;
@@ -630,18 +612,15 @@
             transition: transform 0.4s ease;
             z-index: 2;
         }
-
         .instagram-card:hover .card-overlay {
             transform: translateY(0);
         }
-
         .overlay-text {
             color: #f9f7f4;
             font-family: 'Helvetica Neue', Arial, sans-serif;
             font-size: 0.95rem;
             line-height: 1.6;
         }
-
         .overlay-text strong {
             display: block;
             color: #c9a87c;
@@ -649,7 +628,60 @@
             font-size: 1.05rem;
             letter-spacing: 0.03em;
         }
-
+        /* FIX #5: Moved scroll-arrow styles from body to head */
+        .scroll-arrow {
+            display: inline-block;
+            margin-left: 0.5rem;
+            animation: bounceArrow 1.5s infinite;
+            color: #D4AF37;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        @keyframes bounceArrow {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        /* FIX #5: Moved progression-animation styles from body to head */
+        .progression-animation {
+            margin: 3rem 0;
+            text-align: center;
+        }
+        .progression-step {
+            font-size: 1.5rem;
+            margin: 1.5rem 0;
+            opacity: 0;
+            transform: translateX(-30px);
+            color: #722F37;
+        }
+        .progression-step strong {
+            color: #D4AF37;
+            font-weight: 600;
+        }
+        .content-section.visible .progression-step.step-1 {
+            animation: slideInLeft 0.8s ease forwards;
+            animation-delay: 0.3s;
+        }
+        .content-section.visible .progression-step.step-2 {
+            animation: slideInLeft 0.8s ease forwards;
+            animation-delay: 0.8s;
+        }
+        .content-section.visible .progression-step.step-3 {
+            animation: slideInLeft 0.8s ease forwards;
+            animation-delay: 1.3s;
+        }
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.2rem;
@@ -682,7 +714,6 @@
                 background: #2a2621;
                 margin-top: 0;
             }
-            
             .card-placeholder {
                 height: 350px;
             }
@@ -690,16 +721,18 @@
     </style>
 </head>
 <body>
+    <!-- FIX #9: Skip to content link -->
+    <a href="#intro" class="skip-link">Skip to content</a>
+
     <!-- Progress Bar -->
-    <div class="progress-container">
+    <div class="progress-container" aria-hidden="true">
         <div class="progress-bar" id="progressBar"></div>
     </div>
-
     <!-- Chapter Navigation -->
-    <nav class="chapter-nav" id="chapterNav">
+    <nav class="chapter-nav" id="chapterNav" aria-label="Chapter navigation">
         <div class="nav-content">
             <div class="nav-title">How Universities Sell Dreams</div>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
             <div class="nav-chapters" id="navChapters">
                 <a href="#intro" class="nav-chapter" data-section="intro">Introduction</a>
                 <a href="#layer1" class="nav-chapter" data-section="layer1">Layer 1</a>
@@ -709,101 +742,64 @@
             </div>
         </div>
     </nav>
-
     <!-- Hero -->
-    <div class="hero">
+    <header class="hero">
         <div class="hero-content">
             <h1>How Canadian Universities Sell Dreams to West Africa</h1>
             <p class="subtitle">Every year, 122,000 students apply to study in Canada. Behind each application is a carefully crafted story about who belongs and what's possible.</p>
             <p class="byline">By Delali Mac-Addo</p>
         </div>
-        <div class="scroll-indicator"></div>
-    </div>
-
+        <div class="scroll-indicator" aria-hidden="true"></div>
+    </header>
     <!-- Introduction -->
+    <main>
     <div class="content-section" id="intro">
         <p class="intro-graph first">
             Picture this: You're 22, scrolling Instagram in Lagos or Accra. You see a student who looks like you. They're wearing kente cloth at graduation. They're from Ondo State, Nigeria—maybe the same place as your cousin. They started a business. They're thriving.
         </p>
-
         <p class="intro-graph">
             The caption says: "Discover how the university helped make it happen."
         </p>
-
         <p class="intro-graph">
             That post? It's not an accident.
         </p>
-
         <div class="stat-callout">
             In 2023, Immigration, Refugees and Citizenship Canada processed nearly <strong>122,000 study permit applications</strong> from Nigeria, Ghana, and Cameroon. Each one represents a dream. A family's savings. A vision of the future.
         </div>
-
         <p class="intro-graph">
             But here's what we don't usually ask: <em>How do universities shape that vision?</em> What makes a 22-year-old in West Africa believe that studying in Canada is not just possible, but meant for them?
         </p>
-
         <p class="intro-graph">
             I spent months analyzing the Instagram feeds, websites, and promotional content of two major Canadian universities. I looked at what they post, who they feature, and how they tell stories about postgraduate opportunity.
         </p>
-
         <p class="intro-graph">
             What I found wasn't random. It was a system. A three-layer narrative structure that appears again and again, post after post, story after story.
         </p>
-
         <div class="stat-highlight">
             <strong>Layer One:</strong> They show you someone who looks like you.<br>
             <strong>Layer Two:</strong> They show you what that person achieved.<br>
             <strong>Layer Three:</strong> They tell you where it happened.
         </div>
-
         <p class="intro-graph">
             This is how opportunity gets sold. Not through facts or statistics or program descriptions. Through <strong>recognition. Achievement. Affiliation.</strong>
         </p>
-
         <p class="intro-graph">
             And it works because it taps into something deeper than logic. It shapes <em>imagination</em> itself—what you believe is possible, who you see yourself becoming, and where you think you belong.
         </p>
-
         <p class="intro-graph">
-            Scroll down. I'll show you exactly how it works. <span class="scroll-arrow">↓</span>
+            Scroll down. I'll show you exactly how it works. <span class="scroll-arrow" aria-hidden="true">&#8595;</span>
         </p>
     </div>
-
-    <style>
-        .scroll-arrow {
-            display: inline-block;
-            margin-left: 0.5rem;
-            animation: bounceArrow 1.5s infinite;
-            color: #D4AF37;
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        @keyframes bounceArrow {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-    </style>
-
-    <div class="media-placeholder">
+    <div class="media-placeholder" role="img" aria-label="Visual collage of university recruitment content targeting West African students">
         <div class="placeholder-content">
-            <div class="placeholder-icon">🖼️</div>
+            <div class="placeholder-icon" aria-hidden="true">&#128444;&#65039;</div>
             <div class="placeholder-text">Full-width visual collage</div>
         </div>
     </div>
-
     <!-- Section Divider -->
-    <div class="section-divider" style="background: linear-gradient(rgba(42,38,33,0.7), rgba(42,38,33,0.7)), url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1200 800\'%3E%3Crect fill=\'%232a2621\' width=\'1200\' height=\'800\'/%3E%3C/svg%3E');">
+    <div class="section-divider" role="presentation" style="background: linear-gradient(rgba(42,38,33,0.7), rgba(42,38,33,0.7)), url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1200 800\'%3E%3Crect fill=\'%232a2621\' width=\'1200\' height=\'800\'/%3E%3C/svg%3E');">
         <div class="divider-text">Layer One</div>
     </div>
-
     <!-- Layer 1 -->
     <div class="content-section" id="layer1">
         <div class="layer-header">
@@ -811,47 +807,39 @@
             <h2 class="layer-title">Someone Like You</h2>
             <p class="layer-subtitle">"I see myself in this."</p>
         </div>
-
         <p class="intro-graph">
             Scroll through these universities' Instagram accounts and you'll notice something.
         </p>
-
         <p class="intro-graph">
             The posts targeting West African audiences don't lead with program details or admission requirements. They lead with <strong>faces. Names. Places.</strong>
         </p>
-
         <p class="intro-graph">
             "From Lagos." "From Accra." "From Ondo State, Nigeria."
         </p>
-
         <p class="intro-graph">
             You see students in traditional clothing. References to home countries. Cultural organizations. Food from back home celebrated during Black History Month. Kente stoles at graduation.
         </p>
-
         <p class="intro-graph">
             These aren't random details. They're deliberate signals: <em>This place knows where you're from. This place sees you.</em>
         </p>
-
         <p class="pullquote">
             The message is simple: "Someone like me has already done this."
         </p>
-
         <p class="intro-graph">
             Recognition comes first. Before you even think about applying, you need to believe this pathway is meant for people like you.
         </p>
     </div>
-
     <div class="media-embed" style="background: #f9f7f4;">
         <div style="max-width: 1100px; width: 100%; padding: 2rem;">
-            
+
             <!-- Pair 1: Cultural Symbols -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-                
+
                 <!-- Post 1: Ghana Red Red -->
                 <div style="min-height: 500px; display: flex; justify-content: center;">
                     <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/uoft_food/reel/C35cGUyOTeK/?hl=en" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:326px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
                         <div style="padding:16px;">
-                            <a href="https://www.instagram.com/uoft_food/reel/C35cGUyOTeK/?hl=en" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
+                            <a href="https://www.instagram.com/uoft_food/reel/C35cGUyOTeK/?hl=en" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank" rel="noopener noreferrer">
                                 <div style="display: flex; flex-direction: row; align-items: center;">
                                     <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div>
                                     <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;">
@@ -860,7 +848,7 @@
                                     </div>
                                 </div>
                                 <div style="padding: 19% 0;"></div>
-                                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div>
+                                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" aria-hidden="true"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div>
                                 <div style="padding-top: 8px;">
                                     <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
                                 </div>
@@ -868,12 +856,11 @@
                         </div>
                     </blockquote>
                 </div>
-
                 <!-- Post 2: Kente Stoles -->
                 <div style="min-height: 500px; display: flex; justify-content: center;">
                     <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/uoft/p/C8nLsPlSx5e/?hl=en" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:326px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
                         <div style="padding:16px;">
-                            <a href="https://www.instagram.com/uoft/p/C8nLsPlSx5e/?hl=en" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
+                            <a href="https://www.instagram.com/uoft/p/C8nLsPlSx5e/?hl=en" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank" rel="noopener noreferrer">
                                 <div style="display: flex; flex-direction: row; align-items: center;">
                                     <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div>
                                     <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;">
@@ -882,7 +869,7 @@
                                     </div>
                                 </div>
                                 <div style="padding: 19% 0;"></div>
-                                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div>
+                                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" aria-hidden="true"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div>
                                 <div style="padding-top: 8px;">
                                     <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
                                 </div>
@@ -890,17 +877,14 @@
                         </div>
                     </blockquote>
                 </div>
-
             </div>
-
             <!-- Pair 2: Geographic Origins -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-
                 <!-- Post 3: Ondo, Nigeria Journey -->
                 <div style="min-height: 500px; display: flex; justify-content: center;">
                     <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/ualbertastudents/p/DNTYsLgpWs2/?hl=en" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:326px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
                         <div style="padding:16px;">
-                            <a href="https://www.instagram.com/ualbertastudents/p/DNTYsLgpWs2/?hl=en" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
+                            <a href="https://www.instagram.com/ualbertastudents/p/DNTYsLgpWs2/?hl=en" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank" rel="noopener noreferrer">
                                 <div style="display: flex; flex-direction: row; align-items: center;">
                                     <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div>
                                     <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;">
@@ -909,7 +893,7 @@
                                     </div>
                                 </div>
                                 <div style="padding: 19% 0;"></div>
-                                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div>
+                                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" aria-hidden="true"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div>
                                 <div style="padding-top: 8px;">
                                     <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
                                 </div>
@@ -917,12 +901,11 @@
                         </div>
                     </blockquote>
                 </div>
-
                 <!-- Post 4: Ondo State, Nigeria -->
                 <div style="min-height: 500px; display: flex; justify-content: center;">
                     <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/ualbertastudents/p/DNlbQhnAR13/?hl=en" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:326px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
                         <div style="padding:16px;">
-                            <a href="https://www.instagram.com/ualbertastudents/p/DNlbQhnAR13/?hl=en" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
+                            <a href="https://www.instagram.com/ualbertastudents/p/DNlbQhnAR13/?hl=en" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank" rel="noopener noreferrer">
                                 <div style="display: flex; flex-direction: row; align-items: center;">
                                     <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div>
                                     <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;">
@@ -931,7 +914,7 @@
                                     </div>
                                 </div>
                                 <div style="padding: 19% 0;"></div>
-                                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div>
+                                <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" aria-hidden="true"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div>
                                 <div style="padding-top: 8px;">
                                     <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
                                 </div>
@@ -939,18 +922,15 @@
                         </div>
                     </blockquote>
                 </div>
-
             </div>
         </div>
     </div>
-
-    <script async src="//www.instagram.com/embed.js"></script>
-
+    <!-- FIX #7: Load Instagram embed script with proper callback -->
+    <script async src="https://www.instagram.com/embed.js" onload="if(window.instgrm)window.instgrm.Embeds.process();"></script>
     <!-- Section Divider -->
-    <div class="section-divider" style="background: linear-gradient(rgba(42,38,33,0.7), rgba(42,38,33,0.7)), url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1200 800\'%3E%3Crect fill=\'%232a2621\' width=\'1200\' height=\'800\'/%3E%3C/svg%3E');">
+    <div class="section-divider" role="presentation" style="background: linear-gradient(rgba(42,38,33,0.7), rgba(42,38,33,0.7)), url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1200 800\'%3E%3Crect fill=\'%232a2621\' width=\'1200\' height=\'800\'/%3E%3C/svg%3E');">
         <div class="divider-text">Layer Two</div>
     </div>
-
     <!-- Layer 2 -->
     <div class="content-section" id="layer2">
         <div class="layer-header">
@@ -958,60 +938,48 @@
             <h2 class="layer-title">Look What's Possible</h2>
             <p class="layer-subtitle">"This could be my story."</p>
         </div>
-
         <p class="intro-graph">
             Once you see yourself in the story, the universities show you what's possible.
         </p>
-
         <p class="intro-graph">
             Not with vague promises. With <strong>proof.</strong>
         </p>
-
         <p class="intro-graph">
             A Nigerian graduate named Olugbenga launches Reeddi, a clean-energy company. The number is right there in the post: <strong>3,000+ households and businesses</strong> in Nigeria now have electricity because of his work.
         </p>
-
         <p class="intro-graph">
             Faith, from Ondo State, graduates with a psychology degree. But the post doesn't stop there. It shows her building a photography business. Getting involved in community service. Moving into postgraduate study.
         </p>
-
         <p class="intro-graph">
             These aren't statistics. They're people. With names. With faces. With measurable results.
         </p>
-
         <p class="pullquote">
             Opportunity stops being abstract. It becomes real. Visible. Possible.
         </p>
     </div>
-
     <div class="media-embed">
         <div class="embed-container">
             <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7386030016213602304?compact=1" height="399" width="100%" frameborder="0" allowfullscreen="" title="University of Toronto post featuring Olugbenga Olubanjo and Reeddi"></iframe>
         </div>
     </div>
-
     <div class="content-section" style="padding-top: 2rem;">
         <p class="intro-graph">
             Notice what just happened. You didn't read a program description. You didn't see admission requirements. You saw <em>someone succeed.</em> Someone with a name. A country. A specific, measurable impact.
         </p>
-
         <p class="intro-graph">
             That's the power of Layer Two. Achievement becomes the evidence. Success becomes the proof.
         </p>
     </div>
-
-    <div class="media-placeholder">
+    <div class="media-placeholder" role="img" aria-label="Video of Faith from Ondo State featured by University of Alberta">
         <div class="placeholder-content">
-            <div class="placeholder-icon">🎬</div>
+            <div class="placeholder-icon" aria-hidden="true">&#127908;</div>
             <div class="placeholder-text">University of Alberta: Faith from Ondo State</div>
         </div>
     </div>
-
     <!-- Section Divider -->
-    <div class="section-divider" style="background: linear-gradient(rgba(42,38,33,0.7), rgba(42,38,33,0.7)), url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1200 800\'%3E%3Crect fill=\'%232a2621\' width=\'1200\' height=\'800\'/%3E%3C/svg%3E');">
+    <div class="section-divider" role="presentation" style="background: linear-gradient(rgba(42,38,33,0.7), rgba(42,38,33,0.7)), url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1200 800\'%3E%3Crect fill=\'%232a2621\' width=\'1200\' height=\'800\'/%3E%3C/svg%3E');">
         <div class="divider-text">Layer Three</div>
     </div>
-
     <!-- Layer 3 -->
     <div class="content-section" id="layer3">
         <div class="layer-header">
@@ -1019,181 +987,112 @@
             <h2 class="layer-title">And Here's Where It Happens</h2>
             <p class="layer-subtitle">"I know where to go."</p>
         </div>
-
         <p class="intro-graph">
             Now watch what happens in the captions.
         </p>
-
         <p class="intro-graph">
             After showing you Olugbenga's success, the post pivots: <em>"Discover how U of T helped Olugbenga make Reeddi happen through resources, community, and technical support."</em>
         </p>
-
         <p class="intro-graph">
             The university isn't just a location. It's the <strong>reason</strong> the success happened.
         </p>
-
         <p class="intro-graph">
             The posts end with campus imagery. Institutional branding. Calls to action. "Do it here." "Start your journey." "Apply now."
         </p>
-
+        <!-- FIX #1: Removed duplicate "The progression is complete:" paragraph -->
         <p class="intro-graph">
             The progression is complete:
         </p>
-
-        <p class="intro-graph">
-            The progression is complete:
-        </p>
-
         <div class="progression-animation">
             <p class="progression-step step-1"><strong>First:</strong> Here's someone like you.</p>
             <p class="progression-step step-2"><strong>Then:</strong> Here's what they achieved.</p>
             <p class="progression-step step-3"><strong>Finally:</strong> Here's where you can do it too.</p>
         </div>
-
-        <style>
-            .progression-animation {
-                margin: 3rem 0;
-                text-align: center;
-            }
-
-            .progression-step {
-                font-size: 1.5rem;
-                margin: 1.5rem 0;
-                opacity: 0;
-                transform: translateX(-30px);
-                color: #722F37;
-            }
-
-            .progression-step strong {
-                color: #D4AF37;
-                font-weight: 600;
-            }
-
-            .content-section.visible .progression-step.step-1 {
-                animation: slideInLeft 0.8s ease forwards;
-                animation-delay: 0.3s;
-            }
-
-            .content-section.visible .progression-step.step-2 {
-                animation: slideInLeft 0.8s ease forwards;
-                animation-delay: 0.8s;
-            }
-
-            .content-section.visible .progression-step.step-3 {
-                animation: slideInLeft 0.8s ease forwards;
-                animation-delay: 1.3s;
-            }
-
-            @keyframes slideInLeft {
-                to {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-            }
-        </style>
-
         <p class="pullquote">
             The university becomes the bridge between who you are and who you want to become.
         </p>
     </div>
-
-    <div class="media-placeholder">
+    <div class="media-placeholder" role="img" aria-label="Diagram showing the three-layer narrative structure: Recognition, Achievement, Direction">
         <div class="placeholder-content">
-            <div class="placeholder-icon">📊</div>
+            <div class="placeholder-icon" aria-hidden="true">&#128202;</div>
             <div class="placeholder-text">Visual diagram: Three-layer structure</div>
         </div>
     </div>
-
     <!-- Summary -->
     <div class="content-section">
         <p class="intro-graph large">
             Three layers. Every time.
         </p>
-
         <div class="three-columns">
             <div class="column-card">
-                <div class="column-icon">🤝</div>
+                <div class="column-icon" aria-hidden="true">&#129309;</div>
                 <div class="column-title">Recognition</div>
                 <div class="column-desc">Someone like me</div>
             </div>
             <div class="column-card">
-                <div class="column-icon">⭐</div>
+                <div class="column-icon" aria-hidden="true">&#11088;</div>
                 <div class="column-title">Achievement</div>
                 <div class="column-desc">Look what's possible</div>
             </div>
             <div class="column-card">
-                <div class="column-icon">🏛️</div>
+                <div class="column-icon" aria-hidden="true">&#127963;&#65039;</div>
                 <div class="column-title">Direction</div>
                 <div class="column-desc">Here's where to go</div>
             </div>
         </div>
-
         <p class="intro-graph">
             This isn't random. This is strategy. This is how you make distant institutions feel accessible. How you turn application numbers into enrollment numbers.
         </p>
-
         <p class="intro-graph">
             And it works because it doesn't feel like marketing. It feels like <strong>possibility.</strong>
         </p>
     </div>
-
     <!-- What This Means -->
     <div class="content-section">
         <p class="intro-graph large">
             But here's what we need to talk about.
         </p>
-
         <p class="intro-graph">
             These stories aren't lies. Olugbenga is real. Faith is real. Their achievements are real.
         </p>
-
         <p class="intro-graph">
             But representation is selective. For every success story you see, there are stories you don't. The student who couldn't afford to stay. The visa that got denied. The graduate who moved back home because the job market didn't work out.
         </p>
-
         <p class="intro-graph">
             Instagram algorithms reward engagement. University branding prioritizes impact. So what gets amplified? The wins. The highlights. The proof that the system works.
         </p>
-
         <p class="intro-graph">
             What stays quiet? Everything else.
         </p>
-
         <div class="stat-callout">
             <strong>If you're a prospective student:</strong> These stories are powerful. Let them inspire you. But ask questions too. What's the full picture? What happens when things don't go according to plan?<br><br>
             <strong>If you're a university:</strong> You're not just marketing programs. You're shaping futures. The stories you choose to tell—and the ones you don't—matter more than you think.
         </div>
     </div>
-
     <!-- Final -->
     <div class="content-section" id="conclusion">
         <p class="intro-graph large">
             Here's what I keep thinking about.
         </p>
-
         <p class="intro-graph">
             Every year, 122,000 people from West Africa apply to study in Canada. Behind each application is a late-night research session. A family conversation. A vision of the future.
         </p>
-
         <p class="intro-graph">
             And that vision? It's shaped by posts like these. By the stories universities choose to tell. By who gets to be visible and who stays in the background.
         </p>
-
         <p class="intro-graph" style="text-align: center; font-size: 1.5rem; margin: 3rem 0; font-style: italic;">
             Recognition. Achievement. Direction.
         </p>
-
         <p class="intro-graph">
             That's the formula. That's how opportunity gets sold.
         </p>
-
         <p class="pullquote" style="text-align: center; border: none; padding: 0; margin-top: 4rem;">
             What you see shapes what you believe is possible. And that shaping of imagination? That might be the most powerful form of representation there is.
         </p>
     </div>
-
+    </main>
     <!-- References -->
-    <div class="references-section">
+    <footer class="references-section">
         <div class="references-content">
             <h3>References</h3>
             <ul class="references-list">
@@ -1204,40 +1103,39 @@
                 <li>Immigration, Refugees and Citizenship Canada (2023). Study permit data and statistics.</li>
             </ul>
         </div>
-    </div>
-
+    </footer>
     <script>
         // Mobile Navigation Toggle
         const navToggle = document.getElementById('navToggle');
         const navChapters = document.getElementById('navChapters');
-        
+
         if (navToggle) {
             navToggle.addEventListener('click', () => {
-                navChapters.classList.toggle('open');
-                navToggle.textContent = navChapters.classList.contains('open') ? '✕' : '☰';
+                const isOpen = navChapters.classList.toggle('open');
+                navToggle.textContent = isOpen ? '\u2715' : '\u2630';
+                navToggle.setAttribute('aria-expanded', isOpen);
             });
-
             // Close menu when clicking a link
             document.querySelectorAll('.nav-chapter').forEach(link => {
                 link.addEventListener('click', () => {
                     navChapters.classList.remove('open');
-                    navToggle.textContent = '☰';
+                    navToggle.textContent = '\u2630';
+                    navToggle.setAttribute('aria-expanded', 'false');
                 });
             });
         }
-
         // Progress Bar
         const progressBar = document.getElementById('progressBar');
         const chapterNav = document.getElementById('chapterNav');
-        
+
         window.addEventListener('scroll', () => {
             const windowHeight = window.innerHeight;
             const documentHeight = document.documentElement.scrollHeight - windowHeight;
             const scrolled = window.scrollY;
             const progress = (scrolled / documentHeight) * 100;
-            
+
             progressBar.style.width = progress + '%';
-            
+
             // Show nav after scrolling past hero
             if (scrolled > windowHeight * 0.5) {
                 chapterNav.classList.add('visible');
@@ -1245,22 +1143,21 @@
                 chapterNav.classList.remove('visible');
             }
         });
-
-        // Chapter Navigation - Active State
-        const sections = document.querySelectorAll('[id]');
+        // FIX #3: Chapter Navigation - Active State (only target content sections)
+        const sectionIds = ['intro', 'layer1', 'layer2', 'layer3', 'conclusion'];
+        const contentSections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
         const navLinks = document.querySelectorAll('.nav-chapter');
-        
+
         window.addEventListener('scroll', () => {
             let current = '';
-            
-            sections.forEach(section => {
+
+            contentSections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
                 if (window.scrollY >= (sectionTop - 200)) {
                     current = section.getAttribute('id');
                 }
             });
-            
+
             navLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('data-section') === current) {
@@ -1268,13 +1165,11 @@
                 }
             });
         });
-
         // Smooth scroll-triggered animations with fade in only
         const observerOptions = {
             threshold: 0.15,
             rootMargin: '0px 0px -100px 0px'
         };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1282,16 +1177,10 @@
                 }
             });
         }, observerOptions);
-
         // Observe all content sections and media elements
         document.querySelectorAll('.content-section, .media-placeholder, .media-embed').forEach(section => {
             observer.observe(section);
         });
-
-        // Instagram embed script
-        if (window.instgrm) {
-            window.instgrm.Embeds.process();
-        }
     </script>
 </body>
 </html>
