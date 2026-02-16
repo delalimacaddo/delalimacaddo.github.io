@@ -9,24 +9,173 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Crimson Text', 'Georgia', serif;
             line-height: 1.9;
-            color: #222;
-            background: #f9f7f4;
+            color: #2C1810;
+            background: #FFF8E7;
             overflow-x: hidden;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, #D4AF37, #006B3F, #722F37);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* Chapter Navigation */
+        .chapter-nav {
+            position: fixed;
+            top: 4px;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 248, 231, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 2rem;
+            z-index: 9998;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .chapter-nav.visible {
+            transform: translateY(0);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-title {
+            font-size: 0.9rem;
+            color: #722F37;
+            font-weight: 600;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            white-space: nowrap;
+        }
+
+        .nav-chapters {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-chapter {
+            font-size: 0.85rem;
+            color: #2C1810;
+            text-decoration: none;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-chapter:hover {
+            background: rgba(212, 175, 55, 0.2);
+            color: #006B3F;
+        }
+
+        .nav-chapter.active {
+            background: linear-gradient(135deg, #D4AF37, #C1666B);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Tooltips */
+        .tooltip-term {
+            position: relative;
+            border-bottom: 2px dotted #D4AF37;
+            cursor: help;
+            color: #006B3F;
+            font-weight: 500;
+        }
+
+        .tooltip-content {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            background: #2C1810;
+            color: #FFF8E7;
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            width: 280px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .tooltip-content::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: #2C1810;
+        }
+
+        .tooltip-term:hover .tooltip-content {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        .tooltip-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+
+        .tooltip-video {
+            width: 100%;
+            height: 150px;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .tooltip-content {
+                width: 220px;
+                font-size: 0.85rem;
+            }
         }
 
         .hero {
             height: 100vh;
-            background: #2a2621;
+            background: linear-gradient(135deg, #006B3F 0%, #004D2E 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: #f9f7f4;
+            color: #FFF8E7;
             position: relative;
             padding: 2rem;
         }
@@ -81,7 +230,7 @@
             transform: translateX(-50%);
             width: 2px;
             height: 60px;
-            background: linear-gradient(to bottom, #f9f7f4, transparent);
+            background: linear-gradient(to bottom, #D4AF37, transparent);
             animation: scrollPulse 2s infinite;
         }
 
@@ -171,18 +320,19 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(42, 38, 33, 0.65);
+            background: linear-gradient(135deg, rgba(114, 47, 55, 0.85), rgba(0, 107, 63, 0.85));
         }
 
         .divider-text {
             position: relative;
             z-index: 1;
-            color: #f9f7f4;
+            color: #D4AF37;
             font-size: 3.2rem;
             font-weight: 400;
             text-align: center;
             padding: 0 2rem;
             letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .layer-header {
@@ -196,8 +346,8 @@
             font-size: 0.85rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: #7d5a3b;
-            border-bottom: 2px solid #c9a87c;
+            color: #006B3F;
+            border-bottom: 3px solid #D4AF37;
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
         }
@@ -205,14 +355,14 @@
         .layer-title {
             font-size: 3rem;
             font-weight: 400;
-            color: #2a2621;
+            color: #722F37;
             line-height: 1.2;
             margin-bottom: 1.2rem;
         }
 
         .layer-subtitle {
             font-size: 1.9rem;
-            color: #666;
+            color: #C1666B;
             font-weight: 300;
             font-style: italic;
         }
@@ -221,10 +371,10 @@
             font-size: 2.2rem;
             line-height: 1.5;
             font-style: italic;
-            color: #2a2621;
+            color: #722F37;
             margin: 4rem 0;
             padding-left: 2.5rem;
-            border-left: 4px solid #c9a87c;
+            border-left: 5px solid #D4AF37;
             font-weight: 300;
         }
 
@@ -331,19 +481,19 @@
         .column-title {
             font-size: 1.4rem;
             font-weight: 600;
-            color: #2a2621;
+            color: #006B3F;
             margin-bottom: 0.75rem;
         }
 
         .column-desc {
             font-size: 1.1rem;
-            color: #666;
+            color: #722F37;
             line-height: 1.6;
         }
 
         .references-section {
-            background: #2a2621;
-            color: #f9f7f4;
+            background: linear-gradient(135deg, #2C1810 0%, #1a0f0a 100%);
+            color: #FFF8E7;
             padding: 5rem 2rem;
             margin-top: 6rem;
         }
@@ -527,6 +677,25 @@
     </style>
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Chapter Navigation -->
+    <nav class="chapter-nav" id="chapterNav">
+        <div class="nav-content">
+            <div class="nav-title">How Universities Sell Dreams</div>
+            <div class="nav-chapters">
+                <a href="#intro" class="nav-chapter" data-section="intro">Introduction</a>
+                <a href="#layer1" class="nav-chapter" data-section="layer1">Layer 1</a>
+                <a href="#layer2" class="nav-chapter" data-section="layer2">Layer 2</a>
+                <a href="#layer3" class="nav-chapter" data-section="layer3">Layer 3</a>
+                <a href="#conclusion" class="nav-chapter" data-section="conclusion">Conclusion</a>
+            </div>
+        </div>
+    </nav>
+
     <!-- Hero -->
     <div class="hero">
         <div class="hero-content">
@@ -538,7 +707,7 @@
     </div>
 
     <!-- Introduction -->
-    <div class="content-section">
+    <div class="content-section" id="intro">
         <p class="intro-graph first">
             Picture this: You're 22, scrolling Instagram in Lagos or Accra. You see a student who looks like you. They're wearing kente cloth at graduation. They're from Ondo State, Nigeria—maybe the same place as your cousin. They started a business. They're thriving.
         </p>
@@ -582,9 +751,32 @@
         </p>
 
         <p class="intro-graph">
-            Scroll down. I'll show you exactly how it works.
+            Scroll down. I'll show you exactly how it works. <span class="scroll-arrow">↓</span>
         </p>
     </div>
+
+    <style>
+        .scroll-arrow {
+            display: inline-block;
+            margin-left: 0.5rem;
+            animation: bounceArrow 1.5s infinite;
+            color: #D4AF37;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        @keyframes bounceArrow {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
 
     <div class="media-placeholder">
         <div class="placeholder-content">
@@ -599,7 +791,7 @@
     </div>
 
     <!-- Layer 1 -->
-    <div class="content-section">
+    <div class="content-section" id="layer1">
         <div class="layer-header">
             <div class="layer-number">Layer One</div>
             <h2 class="layer-title">Someone Like You</h2>
@@ -746,7 +938,7 @@
     </div>
 
     <!-- Layer 2 -->
-    <div class="content-section">
+    <div class="content-section" id="layer2">
         <div class="layer-header">
             <div class="layer-number">Layer Two</div>
             <h2 class="layer-title">Look What's Possible</h2>
@@ -807,7 +999,7 @@
     </div>
 
     <!-- Layer 3 -->
-    <div class="content-section">
+    <div class="content-section" id="layer3">
         <div class="layer-header">
             <div class="layer-number">Layer Three</div>
             <h2 class="layer-title">And Here's Where It Happens</h2>
@@ -834,11 +1026,57 @@
             The progression is complete:
         </p>
 
-        <p class="intro-graph" style="text-align: center; font-size: 1.4rem; margin: 2rem 0;">
-            <strong>First:</strong> Here's someone like you.<br>
-            <strong>Then:</strong> Here's what they achieved.<br>
-            <strong>Finally:</strong> Here's where you can do it too.
+        <p class="intro-graph">
+            The progression is complete:
         </p>
+
+        <div class="progression-animation">
+            <p class="progression-step step-1"><strong>First:</strong> Here's someone like you.</p>
+            <p class="progression-step step-2"><strong>Then:</strong> Here's what they achieved.</p>
+            <p class="progression-step step-3"><strong>Finally:</strong> Here's where you can do it too.</p>
+        </div>
+
+        <style>
+            .progression-animation {
+                margin: 3rem 0;
+                text-align: center;
+            }
+
+            .progression-step {
+                font-size: 1.5rem;
+                margin: 1.5rem 0;
+                opacity: 0;
+                transform: translateX(-30px);
+                color: #722F37;
+            }
+
+            .progression-step strong {
+                color: #D4AF37;
+                font-weight: 600;
+            }
+
+            .content-section.visible .progression-step.step-1 {
+                animation: slideInLeft 0.8s ease forwards;
+                animation-delay: 0.3s;
+            }
+
+            .content-section.visible .progression-step.step-2 {
+                animation: slideInLeft 0.8s ease forwards;
+                animation-delay: 0.8s;
+            }
+
+            .content-section.visible .progression-step.step-3 {
+                animation: slideInLeft 0.8s ease forwards;
+                animation-delay: 1.3s;
+            }
+
+            @keyframes slideInLeft {
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+        </style>
 
         <p class="pullquote">
             The university becomes the bridge between who you are and who you want to become.
@@ -914,7 +1152,7 @@
     </div>
 
     <!-- Final -->
-    <div class="content-section">
+    <div class="content-section" id="conclusion">
         <p class="intro-graph large">
             Here's what I keep thinking about.
         </p>
@@ -955,6 +1193,50 @@
     </div>
 
     <script>
+        // Progress Bar
+        const progressBar = document.getElementById('progressBar');
+        const chapterNav = document.getElementById('chapterNav');
+        
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            
+            progressBar.style.width = progress + '%';
+            
+            // Show nav after scrolling past hero
+            if (scrolled > windowHeight * 0.5) {
+                chapterNav.classList.add('visible');
+            } else {
+                chapterNav.classList.remove('visible');
+            }
+        });
+
+        // Chapter Navigation - Active State
+        const sections = document.querySelectorAll('[id]');
+        const navLinks = document.querySelectorAll('.nav-chapter');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll-triggered animations with fade in only
         const observerOptions = {
             threshold: 0.15,
             rootMargin: '0px 0px -100px 0px'
@@ -968,9 +1250,15 @@
             });
         }, observerOptions);
 
+        // Observe all content sections and media elements
         document.querySelectorAll('.content-section, .media-placeholder, .media-embed').forEach(section => {
             observer.observe(section);
         });
+
+        // Instagram embed script
+        if (window.instgrm) {
+            window.instgrm.Embeds.process();
+        }
     </script>
 </body>
 </html>
