@@ -492,8 +492,22 @@
         </div>
     </footer>
     
+    <!-- Image Preview Lightbox -->
+    <div id="imageLightbox" class="lightbox" role="dialog" aria-label="Image preview" aria-hidden="true">
+        <div class="lightbox-backdrop"></div>
+        <button class="lightbox-close" aria-label="Close preview">&times;</button>
+        <button class="lightbox-prev" aria-label="Previous image">&#8249;</button>
+        <button class="lightbox-next" aria-label="Next image">&#8250;</button>
+        <div class="lightbox-content">
+            <img class="lightbox-img" src="" alt="">
+            <div class="lightbox-caption"></div>
+            <div class="lightbox-counter"></div>
+        </div>
+    </div>
+
     <!-- ✅ Scripts moved to external files for better caching -->
     <script src="main.js"></script>
     <script src="instagram-lazy-loader.js"></script>
+    <script src="preview.js"></script>
 </body>
 </html>
