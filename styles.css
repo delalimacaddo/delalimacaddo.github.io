@@ -82,7 +82,7 @@ body {
     top: -40px;
     left: 0;
     background: var(--color-primary);
-    color: var(--color-bg);
+    color: var(--color-text);
     padding: 0.5rem 1rem;
     z-index: 10000;
     font-family: var(--font-sans);
@@ -223,7 +223,7 @@ button:focus,
 
 .nav-chapter.active {
     background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
-    color: var(--color-bg-white);
+    color: #0B1120;
     font-weight: 600;
 }
 
@@ -237,7 +237,7 @@ button:focus,
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: var(--color-bg);
+    color: var(--color-text);
     position: relative;
     padding: 2rem;
 }
@@ -845,7 +845,7 @@ button:focus,
    ============================================ */
 .references-section {
     background: linear-gradient(135deg, #060D1A 0%, #0F1A2E 100%);
-    color: var(--color-bg);
+    color: var(--color-text);
     padding: 5rem 2rem;
     margin-top: var(--spacing-xl);
 }
