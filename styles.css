@@ -38,8 +38,8 @@
     --color-bg-white: #FFFFFF;
     
     /* Typography */
-    --font-serif: 'Crimson Text', Georgia, 'Times New Roman', serif;
-    --font-sans: 'Helvetica Neue', Arial, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
     
     /* Spacing */
     --spacing-xs: 0.5rem;
@@ -63,8 +63,8 @@
    BASE TYPOGRAPHY
    ============================================ */
 body {
-    font-family: var(--font-serif);
-    line-height: 1.9;
+    font-family: var(--font-sans);
+    line-height: 1.8;
     color: var(--color-text);
     background: var(--color-bg);
     overflow-x: hidden;
@@ -260,8 +260,9 @@ button:focus,
 }
 
 .hero h1 {
+    font-family: var(--font-serif);
     font-size: 3.8rem;
-    font-weight: 400;
+    font-weight: 500;
     margin-bottom: 2rem;
     line-height: 1.15;
     letter-spacing: -0.02em;
@@ -398,8 +399,9 @@ button:focus,
     position: relative;
     z-index: 1;
     color: var(--color-accent);
+    font-family: var(--font-serif);
     font-size: 3.2rem;
-    font-weight: 400;
+    font-weight: 500;
     text-align: center;
     padding: 0 2rem;
     letter-spacing: -0.02em;
@@ -427,17 +429,19 @@ button:focus,
 }
 
 .layer-title {
+    font-family: var(--font-serif);
     font-size: 3rem;
-    font-weight: 400;
+    font-weight: 500;
     color: var(--color-secondary);
     line-height: 1.2;
     margin-bottom: 1.2rem;
 }
 
 .layer-subtitle {
+    font-family: var(--font-serif);
     font-size: 1.9rem;
     color: var(--color-accent-light);
-    font-weight: 300;
+    font-weight: 400;
     font-style: italic;
 }
 
@@ -445,6 +449,7 @@ button:focus,
    PULLQUOTES
    ============================================ */
 .pullquote {
+    font-family: var(--font-serif);
     font-size: 2.2rem;
     line-height: 1.5;
     font-style: italic;
@@ -452,7 +457,7 @@ button:focus,
     margin: var(--spacing-lg) 0;
     padding-left: 2.5rem;
     border-left: 5px solid var(--color-accent);
-    font-weight: 300;
+    font-weight: 400;
 }
 
 /* ============================================
