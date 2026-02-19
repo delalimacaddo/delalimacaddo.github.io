@@ -501,49 +501,6 @@ button:focus,
     display: block;
 }
 
-.media-placeholder {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    background: #131B2E;
-    min-height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    opacity: 0;
-    transform: scale(0.96);
-    transition: opacity 1.2s ease, transform 1.2s ease;
-}
-
-.media-placeholder.visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.placeholder-content {
-    text-align: center;
-    padding: 3rem;
-    max-width: 600px;
-}
-
-.placeholder-icon {
-    font-size: 4.5rem;
-    margin-bottom: 1.8rem;
-    opacity: 0.35;
-}
-
-.placeholder-text {
-    font-family: var(--font-sans);
-    font-size: 1.05rem;
-    color: var(--color-text-light);
-    line-height: 1.7;
-}
-
 /* ============================================
    IMAGE COLLAGE GRID
    ============================================ */
@@ -646,96 +603,6 @@ button:focus,
     margin-top: 1rem;
     line-height: 1.5;
     font-style: italic;
-}
-
-/* ✅ FIX #1: Lazy-loaded Instagram embed styles */
-.instagram-lazy-wrapper {
-    min-height: 500px;
-    display: flex;
-    justify-content: center;
-    position: relative;
-}
-
-.instagram-placeholder {
-    width: 100%;
-    max-width: 326px;
-    min-height: 500px;
-    background: linear-gradient(135deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
-    transition: transform var(--transition-normal);
-}
-
-.instagram-placeholder:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-}
-
-.placeholder-overlay {
-    background: rgba(0, 0, 0, 0.7);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    text-align: center;
-}
-
-.ig-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-}
-
-.ig-text {
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    color: var(--color-bg-white);
-    font-weight: 300;
-}
-
-.ig-text strong {
-    display: block;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.load-embed-btn {
-    font-size: 0.95rem;
-    font-family: var(--font-sans);
-    color: var(--color-bg-white);
-    font-weight: 500;
-    padding: 0.75rem 1.5rem;
-    border: 2px solid rgba(255,255,255,0.6);
-    border-radius: 25px;
-    background: transparent;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-}
-
-.load-embed-btn:hover,
-.load-embed-btn:focus {
-    background: rgba(255,255,255,0.2);
-    border-color: var(--color-bg-white);
-    transform: scale(1.05);
-}
-
-/* Loaded embed styles */
-.instagram-lazy-wrapper.loaded {
-    min-height: auto;
-}
-
-.instagram-lazy-wrapper.loaded .instagram-placeholder {
-    display: none;
 }
 
 /* ============================================
@@ -1150,7 +1017,6 @@ button:focus,
     
     .content-section,
     .media-embed,
-    .media-placeholder,
     .media-collage {
         opacity: 1;
         transform: none;
