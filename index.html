@@ -8,7 +8,6 @@
     <meta property="og:description" content="Every year, 122,000 students apply to study in Canada. Behind each application is a carefully crafted story about who belongs and what's possible.">
     <meta property="og:type" content="article">
     
-    <!-- ✅ FIX #3: Content Security Policy -->
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self';
                    script-src 'self' 'unsafe-inline' https://www.instagram.com https://platform.linkedin.com;
@@ -21,16 +20,13 @@
     
     <title>How Canadian Universities Represent Postgraduate Opportunities for West Africa</title>
     
-    <!-- ✅ FIX #4: Optimized Font Loading with preload and font-display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- ✅ NEW: Resource hints for external embeds -->
     <link rel="dns-prefetch" href="https://www.instagram.com">
     <link rel="dns-prefetch" href="https://platform.linkedin.com">
     
-    <!-- ✅ NEW: Structured Data for SEO -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -53,7 +49,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- ✅ FIX #2: Accessibility - Skip to content link -->
     <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- Progress Bar -->
@@ -88,9 +83,7 @@
         <div class="scroll-indicator" aria-hidden="true"></div>
     </header>
     
-    <!-- ✅ FIX #2: Main content with proper ID for skip link -->
     <main id="main-content">
-        <!-- ✅ FIX #2: Added section with H2 for proper heading hierarchy -->
         <section aria-labelledby="intro-heading">
             <h2 id="intro-heading" class="visually-hidden">Introduction</h2>
             <div class="content-section" id="intro">
@@ -154,11 +147,10 @@
         </div>
         
         <!-- Section Divider -->
-        <div class="section-divider" role="presentation" aria-label="Section divider: Cultural Distance" >
+        <div class="section-divider" role="presentation" aria-label="Section divider: Cultural Distance">
             <div class="divider-text">Cultural Distance</div>
         </div>
         
-        <!-- ✅ FIX #2: Layer 1 with proper H2 heading hierarchy -->
         <section aria-labelledby="layer1-heading">
             <div class="content-section" id="layer1">
                 <div class="layer-header">
@@ -201,11 +193,10 @@
         </div>
 
         <!-- Section Divider -->
-        <div class="section-divider" role="presentation" aria-label="Section divider: Students/Alumnus Achievements" >
+        <div class="section-divider" role="presentation" aria-label="Section divider: Students/Alumnus Achievements">
             <div class="divider-text">Students/Alumnus Achievements</div>
         </div>
         
-        <!-- ✅ FIX #2: Layer 2 with proper H2 heading hierarchy -->
         <section aria-labelledby="layer2-heading">
             <div class="content-section" id="layer2">
                 <div class="layer-header">
@@ -247,7 +238,7 @@
         </div>
         
         <section>
-            <div class="content-section" style="padding-top: 2rem;">
+            <div class="content-section compact">
                 <p class="intro-graph">
                     Notice what just happened. You didn't read a program description. You didn't see admission requirements. You saw <em>someone succeed.</em> Someone with a name. A country. A specific, measurable impact.
                 </p>
@@ -267,11 +258,10 @@
         </div>
         
         <!-- Section Divider -->
-        <div class="section-divider" role="presentation" aria-label="Section divider: Institutional Affiliation" >
+        <div class="section-divider" role="presentation" aria-label="Section divider: Institutional Affiliation">
             <div class="divider-text">Institutional Affiliation</div>
         </div>
         
-        <!-- ✅ FIX #2: Layer 3 with proper H2 heading hierarchy -->
         <section aria-labelledby="layer3-heading">
             <div class="content-section" id="layer3">
                 <div class="layer-header">
@@ -371,7 +361,6 @@
             </div>
         </section>
         
-        <!-- ✅ FIX #2: Conclusion with proper H2 heading hierarchy -->
         <section aria-labelledby="conclusion-heading">
             <div class="content-section" id="conclusion">
                 <h2 id="conclusion-heading" class="visually-hidden">Conclusion</h2>
@@ -384,13 +373,13 @@
                 <p class="intro-graph">
                     And that vision? It's shaped by posts like these. By the stories universities choose to tell. By who gets to be visible and who stays in the background.
                 </p>
-                <p class="intro-graph" style="text-align: center; font-size: 1.5rem; margin: 3rem 0; font-style: italic;">
+                <p class="intro-graph centered-italic">
                     Recognition. Achievement. Direction.
                 </p>
                 <p class="intro-graph">
                     That's the formula. That's how opportunity gets sold.
                 </p>
-                <p class="pullquote" style="text-align: center; border: none; padding: 0; margin-top: 4rem;">
+                <p class="pullquote centered">
                     What you see shapes what you believe is possible. And that shaping of imagination? That might be the most powerful form of representation there is.
                 </p>
             </div>
@@ -424,7 +413,6 @@
         </div>
     </div>
 
-    <!-- ✅ Scripts moved to external files for better caching -->
     <script src="main.js"></script>
 
     <script src="preview.js"></script>

@@ -1,6 +1,5 @@
 /**
  * Instagram Embed Lazy Loader
- * ✅ FIX #1: Dramatically improves page load performance
  * Only loads Instagram embeds when they're about to enter the viewport
  */
 
@@ -59,7 +58,6 @@
                 
                 script.onload = () => {
                     isInstagramScriptLoaded = true;
-                    console.log('Instagram embed script loaded successfully');
                     resolve();
                 };
                 
@@ -167,8 +165,6 @@
                 }, 100);
             }
             
-            console.log(`Instagram embed loaded: ${permalink}`);
-            
         } catch (error) {
             console.error(`Error loading Instagram embed (attempt ${retryCount + 1}):`, error);
             
@@ -228,12 +224,7 @@
     function initLazyLoading() {
         const wrappers = document.querySelectorAll('.instagram-lazy-wrapper');
         
-        if (wrappers.length === 0) {
-            console.log('No Instagram embeds found');
-            return;
-        }
-        
-        console.log(`Found ${wrappers.length} Instagram embed(s) to lazy load`);
+        if (wrappers.length === 0) return;
         
         // Check if Intersection Observer is supported
         if (!('IntersectionObserver' in window)) {
@@ -286,7 +277,6 @@
             );
             
             if (isVisible && !wrapper.classList.contains('loaded')) {
-                console.log('Preloading visible Instagram embed');
                 processEmbed(wrapper);
             }
         });
@@ -298,20 +288,12 @@
     
     function init() {
         try {
-            console.log('Initializing Instagram lazy loader...');
-            
-            // Initialize manual load buttons
             initManualLoadButtons();
-            
-            // Initialize lazy loading
             initLazyLoading();
-            
-            // Preload any visible embeds after page load
+
             window.addEventListener('load', () => {
                 setTimeout(preloadVisibleEmbeds, 500);
             });
-            
-            console.log('Instagram lazy loader initialized');
         } catch (error) {
             console.error('Error initializing Instagram lazy loader:', error);
         }
@@ -322,24 +304,6 @@
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
-    }
-    
-    // ============================================
-    // EXPORT FOR DEBUGGING
-    // ============================================
-    
-    if (typeof window !== 'undefined') {
-        window.instagramLoader = {
-            loadAll: () => {
-                document.querySelectorAll('.instagram-lazy-wrapper').forEach(wrapper => {
-                    if (!wrapper.classList.contains('loaded')) {
-                        processEmbed(wrapper);
-                    }
-                });
-            },
-            reload: init,
-            version: '1.0.0'
-        };
     }
     
 })();

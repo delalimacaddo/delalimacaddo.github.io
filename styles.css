@@ -8,7 +8,6 @@
     scroll-behavior: smooth;
 }
 
-/* ✅ FIX #2: Visually hidden class for screen readers */
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -76,7 +75,6 @@ body {
    ACCESSIBILITY IMPROVEMENTS
    ============================================ */
 
-/* ✅ FIX #2: Skip to content link */
 .skip-link {
     position: absolute;
     top: -40px;
@@ -97,7 +95,6 @@ body {
     outline-offset: 2px;
 }
 
-/* ✅ Enhanced focus indicators for all interactive elements */
 a:focus,
 button:focus,
 .nav-chapter:focus {
@@ -326,15 +323,17 @@ button:focus,
     color: var(--color-secondary);
 }
 
-.intro-graph.first {
-    font-size: 1.5rem;
-    line-height: 1.8;
-}
-
 .intro-graph.large {
     font-size: 1.8rem;
     margin: 3rem 0;
     text-align: center;
+}
+
+.intro-graph.centered-italic {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 3rem 0;
+    font-style: italic;
 }
 
 .intro-graph strong {
@@ -458,6 +457,17 @@ button:focus,
     padding-left: 2.5rem;
     border-left: 5px solid var(--color-accent);
     font-weight: 400;
+}
+
+.pullquote.centered {
+    text-align: center;
+    border: none;
+    padding: 0;
+    margin-top: 4rem;
+}
+
+.content-section.compact {
+    padding-top: 2rem;
 }
 
 /* ============================================
