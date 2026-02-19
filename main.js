@@ -78,26 +78,30 @@
     // PROGRESS BAR
     // ============================================
     
-    function initProgressBar() {
+    function initScrollHandler() {
         const progressBar = safeQuery('#progressBar');
         const chapterNav = safeQuery('#chapterNav');
-        
-        if (!progressBar) {
-            console.warn('Progress bar element not found');
-            return;
-        }
-        
+
+        const sectionIds = ['intro', 'layer1', 'layer2', 'layer3', 'conclusion'];
+        const contentSections = sectionIds
+            .map(id => document.getElementById(id))
+            .filter(Boolean);
+        const navLinks = safeQueryAll('.nav-chapter');
+
         let ticking = false;
-        
-        function updateProgress() {
+
+        function onScroll() {
             try {
                 const windowHeight = window.innerHeight;
                 const documentHeight = document.documentElement.scrollHeight - windowHeight;
                 const scrolled = window.scrollY;
-                const progress = Math.min((scrolled / documentHeight) * 100, 100);
-                
-                progressBar.style.width = `${progress}%`;
-                
+
+                // Update progress bar
+                if (progressBar) {
+                    const progress = Math.min((scrolled / documentHeight) * 100, 100);
+                    progressBar.style.width = `${progress}%`;
+                }
+
                 // Show/hide chapter navigation
                 if (chapterNav) {
                     if (scrolled > windowHeight * 0.5) {
@@ -106,79 +110,39 @@
                         chapterNav.classList.remove('visible');
                     }
                 }
-                
+
+                // Update active chapter highlight
+                if (contentSections.length > 0 && navLinks.length > 0) {
+                    let current = '';
+                    contentSections.forEach(section => {
+                        if (scrolled >= (section.offsetTop - 200)) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('data-section') === current) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+
                 ticking = false;
             } catch (error) {
-                console.error('Error updating progress:', error);
+                console.error('Error in scroll handler:', error);
                 ticking = false;
             }
         }
-        
-        // Use requestAnimationFrame for better performance
+
         window.addEventListener('scroll', () => {
             if (!ticking) {
-                window.requestAnimationFrame(updateProgress);
+                window.requestAnimationFrame(onScroll);
                 ticking = true;
             }
         }, { passive: true });
-        
+
         // Initial update
-        updateProgress();
-    }
-    
-    // ============================================
-    // CHAPTER NAVIGATION - ACTIVE STATE
-    // ============================================
-    
-    function initChapterHighlight() {
-        const sectionIds = ['intro', 'layer1', 'layer2', 'layer3', 'conclusion'];
-        const contentSections = sectionIds
-            .map(id => document.getElementById(id))
-            .filter(Boolean);
-        const navLinks = safeQueryAll('.nav-chapter');
-        
-        if (contentSections.length === 0 || navLinks.length === 0) {
-            console.warn('Chapter sections or nav links not found');
-            return;
-        }
-        
-        let ticking = false;
-        
-        function updateActiveChapter() {
-            try {
-                let current = '';
-                
-                contentSections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (window.scrollY >= (sectionTop - 200)) {
-                        current = section.getAttribute('id');
-                    }
-                });
-                
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('data-section') === current) {
-                        link.classList.add('active');
-                    }
-                });
-                
-                ticking = false;
-            } catch (error) {
-                console.error('Error updating active chapter:', error);
-                ticking = false;
-            }
-        }
-        
-        // Use requestAnimationFrame for better performance
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(updateActiveChapter);
-                ticking = true;
-            }
-        }, { passive: true });
-        
-        // Initial update
-        updateActiveChapter();
+        onScroll();
     }
     
     // ============================================
@@ -196,8 +160,7 @@
                 if (entry.isIntersecting) {
                     try {
                         entry.target.classList.add('visible');
-                        // Optional: Unobserve after animation to improve performance
-                        // observer.unobserve(entry.target);
+                        observer.unobserve(entry.target);
                     } catch (error) {
                         console.error('Error adding visible class:', error);
                     }
@@ -257,19 +220,25 @@
     // ============================================
     
     function initKeyboardNav() {
-        // Allow keyboard users to navigate sections with arrow keys
-        document.addEventListener('keydown', (e) => {
+        const chapterNav = safeQuery('#chapterNav');
+        if (!chapterNav) return;
+
+        // Only intercept arrow keys when the nav itself has focus
+        chapterNav.addEventListener('keydown', (e) => {
             try {
                 const navLinks = safeQueryAll('.nav-chapter');
-                const activeIndex = navLinks.findIndex(link => link.classList.contains('active'));
-                
+                const activeIndex = navLinks.findIndex(link => link === document.activeElement);
+                if (activeIndex === -1) return;
+
                 if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
                     e.preventDefault();
                     const nextIndex = (activeIndex + 1) % navLinks.length;
+                    navLinks[nextIndex]?.focus();
                     navLinks[nextIndex]?.click();
                 } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
                     e.preventDefault();
                     const prevIndex = activeIndex - 1 < 0 ? navLinks.length - 1 : activeIndex - 1;
+                    navLinks[prevIndex]?.focus();
                     navLinks[prevIndex]?.click();
                 }
             } catch (error) {
@@ -309,8 +278,7 @@
             console.log('Initializing website...');
             
             initMobileNav();
-            initProgressBar();
-            initChapterHighlight();
+            initScrollHandler();
             initScrollAnimations();
             initSmoothScroll();
             initKeyboardNav();
