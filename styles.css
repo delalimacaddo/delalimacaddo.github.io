@@ -283,6 +283,15 @@ button:focus,
     margin-top: 2rem;
 }
 
+.hero .reading-time {
+    font-size: 0.85rem;
+    font-weight: 300;
+    opacity: 0.5;
+    letter-spacing: 0.05em;
+    font-family: var(--font-sans);
+    margin-top: 0.5rem;
+}
+
 .scroll-indicator {
     position: absolute;
     bottom: 60px;
