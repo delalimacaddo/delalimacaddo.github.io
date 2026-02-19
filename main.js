@@ -5,11 +5,11 @@
 
 (function() {
     'use strict';
-    
+
     // ============================================
     // UTILITY FUNCTIONS
     // ============================================
-    
+
     /**
      * Safe querySelector that returns null if element not found
      */
@@ -21,7 +21,7 @@
             return null;
         }
     }
-    
+
     /**
      * Safe querySelectorAll that returns empty array if elements not found
      */
@@ -33,20 +33,20 @@
             return [];
         }
     }
-    
+
     // ============================================
     // MOBILE NAVIGATION TOGGLE
     // ============================================
-    
+
     function initMobileNav() {
         const navToggle = safeQuery('#navToggle');
         const navChapters = safeQuery('#navChapters');
-        
+
         if (!navToggle || !navChapters) {
             console.warn('Mobile navigation elements not found');
             return;
         }
-        
+
         // Toggle menu on button click
         navToggle.addEventListener('click', () => {
             try {
@@ -57,7 +57,7 @@
                 console.error('Error toggling mobile nav:', error);
             }
         });
-        
+
         // Close menu when clicking a link
         const navLinks = safeQueryAll('.nav-chapter');
         navLinks.forEach(link => {
@@ -72,11 +72,11 @@
             });
         });
     }
-    
+
     // ============================================
     // PROGRESS BAR
     // ============================================
-    
+
     function initScrollHandler() {
         const progressBar = safeQuery('#progressBar');
         const chapterNav = safeQuery('#chapterNav');
@@ -143,17 +143,17 @@
         // Initial update
         onScroll();
     }
-    
+
     // ============================================
     // SCROLL-TRIGGERED ANIMATIONS
     // ============================================
-    
+
     function initScrollAnimations() {
         const observerOptions = {
             threshold: 0.15,
             rootMargin: '0px 0px -100px 0px'
         };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -166,43 +166,43 @@
                 }
             });
         }, observerOptions);
-        
+
         // Observe all content sections and media elements
         const animatedElements = safeQueryAll('.content-section, .media-embed, .media-collage');
         animatedElements.forEach(element => {
             observer.observe(element);
         });
     }
-    
+
     // ============================================
     // SMOOTH SCROLL FOR ANCHOR LINKS
     // ============================================
-    
+
     function initSmoothScroll() {
         const anchorLinks = safeQueryAll('a[href^="#"]');
-        
+
         anchorLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 try {
                     const targetId = link.getAttribute('href').slice(1);
                     const targetElement = document.getElementById(targetId);
-                    
+
                     if (targetElement) {
                         e.preventDefault();
-                        
+
                         // Check if user prefers reduced motion
                         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                        
+
                         targetElement.scrollIntoView({
                             behavior: prefersReducedMotion ? 'auto' : 'smooth',
                             block: 'start'
                         });
-                        
+
                         // Update URL without triggering scroll
                         if (history.pushState) {
                             history.pushState(null, null, `#${targetId}`);
                         }
-                        
+
                         // Set focus for accessibility
                         targetElement.setAttribute('tabindex', '-1');
                         targetElement.focus();
@@ -213,11 +213,11 @@
             });
         });
     }
-    
+
     // ============================================
     // KEYBOARD NAVIGATION ENHANCEMENT
     // ============================================
-    
+
     function initKeyboardNav() {
         const chapterNav = safeQuery('#chapterNav');
         if (!chapterNav) return;
@@ -245,11 +245,11 @@
             }
         });
     }
-    
+
     // ============================================
     // INITIALIZATION
     // ============================================
-    
+
     function init() {
         try {
             initMobileNav();
@@ -261,12 +261,12 @@
             console.error('Error during initialization:', error);
         }
     }
-    
+
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
-    
+
 })();
