@@ -39,19 +39,19 @@
     /* Typography */
     --font-display: 'Syne', 'Arial Black', sans-serif;
     --font-sans: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
-    
+
     /* Spacing */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
     --spacing-lg: 4rem;
     --spacing-xl: 6rem;
-    
+
     /* Transitions */
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.6s ease;
-    
+
     /* Shadows */
     --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
     --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
@@ -896,32 +896,32 @@ button:focus,
     .hero h1 {
         font-size: 2.2rem;
     }
-    
+
     .hero .subtitle {
         font-size: 1.2rem;
     }
-    
+
     .content-section {
         padding: 3rem 1.5rem;
     }
-    
+
     .intro-graph {
         font-size: 1.3rem;
     }
-    
+
     .layer-title {
         font-size: 2.2rem;
     }
-    
+
     .three-columns {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
+
     .divider-text {
         font-size: 2.2rem;
     }
-    
+
     .pullquote {
         font-size: 1.7rem;
     }
@@ -946,7 +946,7 @@ button:focus,
     .nav-toggle {
         display: block;
     }
-    
+
     .nav-chapters {
         display: none;
         flex-direction: column;
@@ -959,11 +959,11 @@ button:focus,
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         gap: 0.5rem;
     }
-    
+
     .nav-chapters.open {
         display: flex;
     }
-    
+
     .nav-chapter {
         padding: 0.6rem 1rem;
         font-size: 1rem;
@@ -971,7 +971,7 @@ button:focus,
         display: flex;
         align-items: center;
     }
-    
+
     /* Collage grid on mobile */
     .collage-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -987,20 +987,20 @@ button:focus,
         background-attachment: scroll;
         height: 50vh;
     }
-    
+
     /* Touch-friendly improvements */
     button,
     a {
         min-height: 44px;
         min-width: 44px;
     }
-    
+
     /* Prevent text size adjustment */
     html {
         -webkit-text-size-adjust: 100%;
         text-size-adjust: 100%;
     }
-    
+
     /* Improve tap highlighting */
     * {
         -webkit-tap-highlight-color: rgba(6, 182, 212, 0.3);
@@ -1035,12 +1035,12 @@ button:focus,
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
-    
+
     .scroll-indicator,
     .scroll-arrow {
         animation: none;
     }
-    
+
     .section-divider {
         background-attachment: scroll;
     }
@@ -1057,7 +1057,7 @@ button:focus,
     .lightbox {
         display: none;
     }
-    
+
     .content-section,
     .media-embed,
     .media-collage {
@@ -1065,7 +1065,7 @@ button:focus,
         transform: none;
         page-break-inside: avoid;
     }
-    
+
     body {
         background: white;
         color: black;
