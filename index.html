@@ -10,13 +10,16 @@
     
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self';
-                   script-src 'self' 'unsafe-inline' https://www.instagram.com https://platform.linkedin.com;
+                   script-src 'self' https://www.instagram.com https://platform.linkedin.com;
                    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
                    font-src 'self' https://fonts.gstatic.com;
                    frame-src https://www.instagram.com https://www.linkedin.com;
                    img-src 'self' data: https://*.cdninstagram.com https://www.instagram.com;
                    media-src 'self';
-                   connect-src 'self' https://www.instagram.com;">
+                   connect-src 'self' https://www.instagram.com;
+                   object-src 'none';
+                   base-uri 'self';">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     
     <title>How Canadian Universities Represent Postgraduate Opportunities for West Africa</title>
     
@@ -228,13 +231,13 @@
         
         <div class="media-embed">
             <div class="embed-container">
-                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7386030016213602304?compact=1" 
-                        height="399" 
-                        width="100%" 
-                        frameborder="0" 
-                        allowfullscreen 
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7386030016213602304?compact=1"
+                        height="399"
+                        width="100%"
+                        allowfullscreen
                         title="University of Toronto post featuring Olugbenga Olubanjo and Reeddi"
-                        loading="lazy"></iframe>
+                        loading="lazy"
+                        sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
             </div>
         </div>
         
