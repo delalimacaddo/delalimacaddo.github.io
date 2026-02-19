@@ -408,6 +408,16 @@ button:focus,
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
+.divider-subtitle {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.75);
+    margin-top: 0.6rem;
+    letter-spacing: 0.01em;
+    font-style: italic;
+}
+
 /* ============================================
    LAYER HEADERS
    ============================================ */
