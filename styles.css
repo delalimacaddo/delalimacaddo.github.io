@@ -327,7 +327,7 @@ button:focus,
 }
 
 .intro-graph.first {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     line-height: 1.8;
 }
 
@@ -899,7 +899,23 @@ button:focus,
     .pullquote {
         font-size: 1.7rem;
     }
-    
+
+    .stat-callout {
+        font-size: 1.2rem;
+    }
+
+    .stat-highlight {
+        font-size: 1.15rem;
+    }
+
+    .layer-subtitle {
+        font-size: 1.5rem;
+    }
+
+    .progression-step {
+        font-size: 1.3rem;
+    }
+
     /* Mobile nav toggle */
     .nav-toggle {
         display: block;
@@ -975,6 +991,7 @@ button:focus,
     .lightbox-next { right: 0.5rem; }
 
     .lightbox-close {
+        font-size: 2rem;
         top: 0.5rem;
         right: 0.75rem;
     }
