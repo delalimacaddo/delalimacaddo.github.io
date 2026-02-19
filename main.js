@@ -1,7 +1,6 @@
 /**
  * Main JavaScript for University Storytelling Website
  * Handles: Navigation, Progress Bar, Scroll Animations
- * ✅ Includes error handling and defensive checks
  */
 
 (function() {
@@ -248,47 +247,16 @@
     }
     
     // ============================================
-    // PERFORMANCE MONITORING (Optional)
-    // ============================================
-    
-    function logPerformanceMetrics() {
-        if ('performance' in window && 'getEntriesByType' in performance) {
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    try {
-                        const perfData = performance.getEntriesByType('navigation')[0];
-                        console.log('Performance Metrics:');
-                        console.log(`DOM Content Loaded: ${perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart}ms`);
-                        console.log(`Page Load Time: ${perfData.loadEventEnd - perfData.loadEventStart}ms`);
-                        console.log(`Total Time: ${perfData.loadEventEnd - perfData.fetchStart}ms`);
-                    } catch (error) {
-                        console.warn('Performance API not available:', error);
-                    }
-                }, 0);
-            });
-        }
-    }
-    
-    // ============================================
     // INITIALIZATION
     // ============================================
     
     function init() {
         try {
-            console.log('Initializing website...');
-            
             initMobileNav();
             initScrollHandler();
             initScrollAnimations();
             initSmoothScroll();
             initKeyboardNav();
-            
-            // Optional: Log performance metrics in development
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                logPerformanceMetrics();
-            }
-            
-            console.log('Website initialized successfully');
         } catch (error) {
             console.error('Error during initialization:', error);
         }
@@ -299,17 +267,6 @@
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
-    }
-    
-    // ============================================
-    // EXPORT FOR DEBUGGING (Optional)
-    // ============================================
-    
-    if (typeof window !== 'undefined') {
-        window.websiteDebug = {
-            reinitialize: init,
-            version: '1.0.0'
-        };
     }
     
 })();
