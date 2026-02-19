@@ -290,6 +290,12 @@ button:focus,
     letter-spacing: 0.05em;
     font-family: var(--font-sans);
     margin-top: 0.5rem;
+    animation: fadeOutReading 5s ease forwards;
+}
+
+@keyframes fadeOutReading {
+    0%, 60% { opacity: 0.5; }
+    100% { opacity: 0; pointer-events: none; }
 }
 
 .scroll-indicator {
