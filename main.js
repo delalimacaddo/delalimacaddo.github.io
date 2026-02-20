@@ -6,6 +6,12 @@
 (function() {
     'use strict';
 
+    // Prevent browser from restoring previous scroll position on refresh
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     // ============================================
     // UTILITY FUNCTIONS
     // ============================================
