@@ -209,9 +209,12 @@
                             history.pushState(null, null, `#${targetId}`);
                         }
 
-                        // Set focus for accessibility
+                        // Set focus for accessibility, then clean up tabindex
                         targetElement.setAttribute('tabindex', '-1');
                         targetElement.focus();
+                        targetElement.addEventListener('blur', function() {
+                            targetElement.removeAttribute('tabindex');
+                        }, { once: true });
                     }
                 } catch (error) {
                     console.error('Error with smooth scroll:', error);
