@@ -566,7 +566,7 @@ button:focus,
 
 .collage-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 0.5rem;
     max-width: 1400px;
     margin: 0 auto;
@@ -985,9 +985,9 @@ button:focus,
         align-items: center;
     }
 
-    /* Collage grid on mobile */
+    /* Collage grid on mobile — 2 columns for even rows */
     .collage-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 0.25rem;
     }
 

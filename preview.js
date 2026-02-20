@@ -158,8 +158,8 @@
         lightboxImg.alt = img.alt || '';
 
         if (lightboxCaption) {
-            // Use image alt text or nearby caption
-            var caption = img.alt || '';
+            // Use data-caption first, then image alt text, then nearby caption element
+            var caption = img.getAttribute('data-caption') || img.alt || '';
             var parent = img.closest('.single-image-container');
             if (parent) {
                 var captionEl = parent.querySelector('.image-caption');
