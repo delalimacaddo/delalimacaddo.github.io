@@ -29,7 +29,6 @@ html {
 :root {
     /* Colors - Dark Cyberpunk Editorial */
     --color-primary: #06B6D4;
-    --color-primary-dark: #0891B2;
     --color-secondary: #CBD5E1;
     --color-accent: #F59E0B;
     --color-accent-light: #A78BFA;
@@ -44,7 +43,6 @@ html {
     --font-sans: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
 
     /* Spacing */
-    --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
     --spacing-lg: 4rem;
@@ -53,11 +51,9 @@ html {
     /* Transitions */
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
-    --transition-slow: 0.6s ease;
 
     /* Shadows */
     --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
-    --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
     --shadow-lg: 0 12px 32px rgba(0,0,0,0.5);
 }
 
@@ -160,7 +156,6 @@ button:focus,
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     transform: translateY(-100%);
     transition: transform var(--transition-normal);
-    pointer-events: auto;
 }
 
 .chapter-nav.visible {
@@ -367,10 +362,6 @@ button:focus,
 .intro-graph strong {
     font-weight: 600;
     color: var(--color-text);
-}
-
-.intro-graph em {
-    font-style: italic;
 }
 
 /* ============================================
@@ -598,7 +589,6 @@ button:focus,
 
 .video-container video {
     width: 100%;
-    max-width: 100%;
     border-radius: 8px;
     box-shadow: var(--shadow-lg);
 }
