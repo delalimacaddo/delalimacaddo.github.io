@@ -334,50 +334,6 @@ button:focus,
     transform: translateY(0);
 }
 
-/* ============================================
-   LAYER 1 FLANKING IMAGES
-   ============================================ */
-.layer1-flanked {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-.layer1-side {
-    flex: 0 0 280px;
-    position: sticky;
-    top: 80px;
-    opacity: 0;
-    transition: opacity 1.2s ease;
-}
-
-.layer1-side.visible {
-    opacity: 1;
-}
-
-.layer1-side img {
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: var(--shadow-lg);
-}
-
-@media (max-width: 1100px) {
-    .layer1-flanked {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .layer1-side {
-        position: static;
-        flex: none;
-        width: 100%;
-        max-width: 400px;
-    }
-}
 
 .intro-graph {
     font-size: 1.5rem;
