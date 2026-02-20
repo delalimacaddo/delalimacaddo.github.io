@@ -232,7 +232,8 @@ button:focus,
    ============================================ */
 .hero {
     height: 100vh;
-    background: linear-gradient(135deg, #06101F 0%, #0B1120 40%, #0C2233 100%);
+    background: linear-gradient(135deg, rgba(6, 16, 31, 0.82) 0%, rgba(11, 17, 32, 0.78) 40%, rgba(12, 34, 51, 0.75) 100%),
+                url('Gallery/full width visual collage/12.AVIF') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
