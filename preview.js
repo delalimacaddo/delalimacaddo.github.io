@@ -113,6 +113,9 @@
         // Focus the close button for accessibility
         var closeBtn = lightbox.querySelector('.lightbox-close');
         if (closeBtn) closeBtn.focus();
+
+        // Trap focus inside the lightbox
+        lightbox.addEventListener('keydown', trapFocus);
     }
 
     function closeLightbox() {
@@ -121,6 +124,7 @@
         lightbox.classList.remove('active');
         lightbox.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        lightbox.removeEventListener('keydown', trapFocus);
 
         // Return focus to the image that was clicked
         if (currentIndex >= 0 && previewableImages[currentIndex]) {
@@ -146,6 +150,10 @@
         if (!lightboxImg || currentIndex < 0) return;
 
         var img = previewableImages[currentIndex];
+        lightboxImg.onerror = function() {
+            lightboxImg.alt = 'Image failed to load';
+            if (lightboxCaption) lightboxCaption.textContent = 'Image could not be loaded.';
+        };
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt || '';
 
@@ -171,6 +179,28 @@
         if (prevBtn) prevBtn.style.display = showNav ? '' : 'none';
         if (nextBtn) nextBtn.style.display = showNav ? '' : 'none';
         if (lightboxCounter) lightboxCounter.style.display = showNav ? '' : 'none';
+    }
+
+    function trapFocus(e) {
+        if (e.key !== 'Tab') return;
+
+        var focusable = lightbox.querySelectorAll('button:not([style*="display: none"])');
+        if (focusable.length === 0) return;
+
+        var first = focusable[0];
+        var last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+            if (document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            }
+        } else {
+            if (document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
     }
 
     function handleKeydown(e) {
