@@ -174,7 +174,7 @@
         }, observerOptions);
 
         // Observe all content sections and media elements
-        const animatedElements = safeQueryAll('.content-section, .media-embed, .media-collage, .layer1-side');
+        const animatedElements = safeQueryAll('.content-section, .media-embed, .media-collage');
         animatedElements.forEach(element => {
             observer.observe(element);
         });
