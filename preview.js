@@ -150,12 +150,13 @@
         if (!lightboxImg || currentIndex < 0) return;
 
         var img = previewableImages[currentIndex];
+        // Set error handler before src to catch cached 404s
         lightboxImg.onerror = function() {
             lightboxImg.alt = 'Image failed to load';
             if (lightboxCaption) lightboxCaption.textContent = 'Image could not be loaded.';
         };
-        lightboxImg.src = img.src;
         lightboxImg.alt = img.alt || '';
+        lightboxImg.src = img.src;
 
         if (lightboxCaption) {
             // Use data-caption first, then image alt text, then nearby caption element
@@ -184,7 +185,9 @@
     function trapFocus(e) {
         if (e.key !== 'Tab') return;
 
-        var focusable = lightbox.querySelectorAll('button:not([style*="display: none"])');
+        var focusable = Array.from(lightbox.querySelectorAll('button')).filter(function(btn) {
+            return getComputedStyle(btn).display !== 'none';
+        });
         if (focusable.length === 0) return;
 
         var first = focusable[0];

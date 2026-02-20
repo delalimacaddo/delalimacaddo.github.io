@@ -37,7 +37,7 @@ html {
     --color-text-light: #94A3B8;
     --color-bg: #0B1120;
     --color-bg-alt: #131B2E;
-    --color-bg-white: #1A2332;
+    --color-bg-raised: #1A2332;
 
     /* Typography */
     --font-display: 'Syne', 'Arial Black', sans-serif;
@@ -377,7 +377,7 @@ button:focus,
    CALLOUTS & HIGHLIGHTS
    ============================================ */
 .stat-callout {
-    background: var(--color-bg-white);
+    background: var(--color-bg-raised);
     border-left: 4px solid var(--color-primary);
     padding: 2.5rem 3rem;
     margin: var(--spacing-lg) 0;
@@ -508,7 +508,7 @@ button:focus,
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
-    background: var(--color-bg-white);
+    background: var(--color-bg-raised);
     min-height: auto;
     display: flex;
     align-items: center;
