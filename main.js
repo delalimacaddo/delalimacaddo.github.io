@@ -23,7 +23,6 @@
         try {
             return document.querySelector(selector);
         } catch (error) {
-            console.warn(`Element not found: ${selector}`);
             return null;
         }
     }
@@ -35,7 +34,6 @@
         try {
             return Array.from(document.querySelectorAll(selector));
         } catch (error) {
-            console.warn(`Elements not found: ${selector}`);
             return [];
         }
     }
@@ -48,10 +46,7 @@
         const navToggle = safeQuery('#navToggle');
         const navChapters = safeQuery('#navChapters');
 
-        if (!navToggle || !navChapters) {
-            console.warn('Mobile navigation elements not found');
-            return;
-        }
+        if (!navToggle || !navChapters) return;
 
         // Toggle menu on button click
         navToggle.addEventListener('click', () => {
@@ -60,7 +55,7 @@
                 navToggle.textContent = isOpen ? '\u2715' : '\u2630';
                 navToggle.setAttribute('aria-expanded', isOpen);
             } catch (error) {
-                console.error('Error toggling mobile nav:', error);
+                // silently handle error
             }
         });
 
@@ -73,7 +68,7 @@
                     navToggle.textContent = '\u2630';
                     navToggle.setAttribute('aria-expanded', 'false');
                 } catch (error) {
-                    console.error('Error closing mobile nav:', error);
+                    // silently handle error
                 }
             });
         });
@@ -134,7 +129,7 @@
 
                 ticking = false;
             } catch (error) {
-                console.error('Error in scroll handler:', error);
+                // silently handle error
                 ticking = false;
             }
         }
@@ -167,7 +162,7 @@
                         entry.target.classList.add('visible');
                         observer.unobserve(entry.target);
                     } catch (error) {
-                        console.error('Error adding visible class:', error);
+                        // silently handle error
                     }
                 }
             });
@@ -217,7 +212,7 @@
                         }, { once: true });
                     }
                 } catch (error) {
-                    console.error('Error with smooth scroll:', error);
+                    // silently handle error
                 }
             });
         });
@@ -250,7 +245,7 @@
                     navLinks[prevIndex]?.click();
                 }
             } catch (error) {
-                console.error('Error with keyboard navigation:', error);
+                // silently handle error
             }
         });
     }
@@ -267,7 +262,7 @@
             initSmoothScroll();
             initKeyboardNav();
         } catch (error) {
-            console.error('Error during initialization:', error);
+            // silently handle error
         }
     }
 

@@ -10,11 +10,11 @@
 
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self';
-                   script-src 'self' https://platform.linkedin.com;
+                   script-src 'self' 'sha256-u2r1cCNT6aZl0UTE7bvnZgo/NRHkcXOj3fQbdN4JyMc=' https://platform.linkedin.com;
                    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
                    font-src 'self' https://fonts.gstatic.com;
                    frame-src https://www.linkedin.com;
-                   img-src 'self' data:;
+                   img-src 'self';
                    media-src 'self';
                    connect-src 'self';
                    object-src 'none';
@@ -22,6 +22,8 @@
                    form-action 'none';
                    upgrade-insecure-requests;">
     <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
 
     <title>How Canadian Universities Represent Postgraduate Opportunities for West Africa</title>
 
@@ -53,6 +55,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <script>
+    // Anti-clickjacking: prevent site from being framed by malicious pages
+    if (window.self !== window.top) {
+        document.documentElement.style.display = 'none';
+        window.top.location.replace(window.self.location.href);
+    }
+    </script>
     <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- Progress Bar -->
