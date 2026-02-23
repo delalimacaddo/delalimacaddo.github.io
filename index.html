@@ -10,11 +10,11 @@
 
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self';
-                   script-src 'self' https://platform.linkedin.com;
+                   script-src 'self' 'sha256-u2r1cCNT6aZl0UTE7bvnZgo/NRHkcXOj3fQbdN4JyMc=' https://platform.linkedin.com;
                    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
                    font-src 'self' https://fonts.gstatic.com;
                    frame-src https://www.linkedin.com;
-                   img-src 'self' data:;
+                   img-src 'self';
                    media-src 'self';
                    connect-src 'self';
                    object-src 'none';
@@ -22,6 +22,8 @@
                    form-action 'none';
                    upgrade-insecure-requests;">
     <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
 
     <title>How Canadian Universities Represent Postgraduate Opportunities for West Africa</title>
 
@@ -53,6 +55,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <script>
+    // Anti-clickjacking: prevent site from being framed by malicious pages
+    if (window.self !== window.top) {
+        document.documentElement.style.display = 'none';
+        window.top.location.replace(window.self.location.href);
+    }
+    </script>
     <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- Progress Bar -->
@@ -93,39 +102,40 @@
             <h2 id="intro-heading" class="visually-hidden">Introduction</h2>
             <div class="content-section" id="intro">
                 <p class="intro-graph first">
-                    <span class="drop-cap">M</span>illions of young people scroll through posts shared by universities — stories of campus life, graduations, and student achievements. These posts don't just document success. They shape imagination.
+                    <span class="drop-cap">M</span>illions of young people scroll through posts shared by universities featuring stories of campus life, graduations, and student achievements. These posts don't just document success. They shape imagination.
                 </p>
                 <p class="intro-graph">
-                    Picture this: You're 25, scrolling Instagram. You see someone who feels familiar — whose roots, identity, or culture mirror your own. They're wearing a familiar outfit (kente cloth) at graduation. They're from Ondo State, Nigeria — maybe even the same place as your cousin. They've started a business that's thriving and solving real problems. They embody your idea of a successful career.
+                    Picture this: You're 25, scrolling Instagram. You see someone who feels familiar—whose roots, identity, or culture mirror your own. They are wearing kente cloth at graduation. They are from Ondo State, Nigeria—maybe even the same town as your cousin. They have started a thriving business that solves real problems. In that moment, they embody your idea of a successful career.
                 </p>
                 <p class="intro-graph">
                     The caption says: "Discover how the university helped make it happen."
                 </p>
                 <p class="intro-graph">
-                    That post isn't random. It's part of a larger pattern in how postgraduate opportunity is represented.
+                    That post isn't random. It's a calculated part of a larger pattern in how postgraduate opportunity is represented.
                 </p>
                 <div class="stat-callout">
-                    Between January and September 2024, Immigration, Refugees and Citizenship Canada processed nearly <strong>122,000 study permit applications</strong> from Cameroon, Côte d'Ivoire, Ghana, Guinea, and Nigeria. Each one represents a dream and a vision of the future.
+                    Between January and September 2024, nearly 122,000 study permit applications were processed from Cameroon, Côte d'Ivoire, Ghana, Guinea, and Nigeria. Each one represents a vision of the future.
                 </div>
                 <p class="intro-graph">
-                    But here's what we don't usually ask: <em>How do universities shape that vision?</em> What makes a 25-year-old in West Africa believe that studying in Canada is not just possible, but meant for them and tied to their career ambitions?
+                    But here is what we don't usually ask: <em>How do universities shape that vision?</em> What makes a 25-year-old in West Africa believe that studying in Canada is not just possible, but specifically meant for them?
                 </p>
                 <p class="intro-graph">
-                    I spent months analyzing the Instagram feeds, website pages, LinkedIn posts, and YouTube videos of two major Canadian universities. I examined what they post, who they feature, and how they tell stories about postgraduate opportunity.
+                    I spent months analyzing the Instagram feeds, websites, LinkedIn posts, and YouTube videos of two major Canadian universities. What I found wasn't a collection of random stories. It was a system.
                 </p>
+                <h3 class="intro-graph" style="font-size:1.6rem; font-weight:600; margin-bottom:0.5rem;">The Three-Layer Narrative</h3>
                 <p class="intro-graph">
-                    What I found wasn't random. It was a system. A three-layer narrative structure that appears again and again, post after post, story after story.
+                    This system appears again, post after post. It is the formula through which opportunity is sold.
                 </p>
                 <div class="stat-highlight">
-                    <strong>Layer 1:</strong> They show you someone who shares similar identities to yours.<br>
-                    <strong>Layer 2:</strong> They show you what that person achieved.<br>
-                    <strong>Layer 3:</strong> They tell you where it happened.
+                    <strong>1. Layer 1 (Identity):</strong> They show you someone who shares your roots.<br>
+                    <strong>2. Layer 2 (Achievement):</strong> They show you what that person achieved.<br>
+                    <strong>3. Layer 3 (Affiliation):</strong> They tell you exactly where it happened.
                 </div>
                 <p class="intro-graph">
-                    This is how opportunity is represented. Not through facts or statistics or program descriptions. Through <strong>Identity. Achievement. Affiliation.</strong>
+                    This is how opportunity is represented. Not through facts, statistics, or program descriptions, but through <strong>Identity, Achievement, and Affiliation.</strong>
                 </p>
                 <p class="intro-graph">
-                    And it works because it taps into something deeper than logic. It shapes <em>imagination</em> itself — what you believe is possible, who you see yourself becoming, and where you think you belong.
+                    It works because it taps into something deeper than logic. It shapes <em>imagination</em> itself—what you believe is possible, who you see yourself becoming, and where you think you belong.
                 </p>
                 <p class="intro-graph">
                     Keep scrolling. Pay special attention to the visuals along the way. It will show you exactly how this system works. <span class="scroll-arrow" aria-hidden="true">&#8595;</span>
