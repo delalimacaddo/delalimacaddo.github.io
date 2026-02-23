@@ -7,30 +7,32 @@
     <meta property="og:title" content="How Canadian Universities Represent Postgraduate Opportunities for West Africa">
     <meta property="og:description" content="Every year, 122,000 students apply to study in Canada. Behind each application is a carefully crafted story about who belongs and what's possible.">
     <meta property="og:type" content="article">
-    
-    <!-- ✅ FIX #3: Content Security Policy -->
+
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self';
-                   script-src 'self' 'unsafe-inline' https://www.instagram.com https://platform.linkedin.com;
+                   script-src 'self' 'sha256-u2r1cCNT6aZl0UTE7bvnZgo/NRHkcXOj3fQbdN4JyMc=' https://platform.linkedin.com;
                    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
                    font-src 'self' https://fonts.gstatic.com;
-                   frame-src https://www.instagram.com https://www.linkedin.com;
-                   img-src 'self' data: https://*.cdninstagram.com https://www.instagram.com;
+                   frame-src https://www.linkedin.com;
+                   img-src 'self';
                    media-src 'self';
-                   connect-src 'self' https://www.instagram.com;">
-    
+                   connect-src 'self';
+                   object-src 'none';
+                   base-uri 'self';
+                   form-action 'none';
+                   upgrade-insecure-requests;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+
     <title>How Canadian Universities Represent Postgraduate Opportunities for West Africa</title>
-    
-    <!-- ✅ FIX #4: Optimized Font Loading with preload and font-display -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <!-- ✅ NEW: Resource hints for external embeds -->
-    <link rel="dns-prefetch" href="https://www.instagram.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" crossorigin="anonymous">
+
     <link rel="dns-prefetch" href="https://platform.linkedin.com">
-    
-    <!-- ✅ NEW: Structured Data for SEO -->
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -49,18 +51,24 @@
         "keywords": "Canadian universities, West African students, Instagram marketing, higher education recruitment, international education"
     }
     </script>
-    
+
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- ✅ FIX #2: Accessibility - Skip to content link -->
+    <script>
+    // Anti-clickjacking: prevent site from being framed by malicious pages
+    if (window.self !== window.top) {
+        document.documentElement.style.display = 'none';
+        window.top.location.replace(window.self.location.href);
+    }
+    </script>
     <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- Progress Bar -->
     <div class="progress-container" aria-hidden="true">
         <div class="progress-bar" id="progressBar"></div>
     </div>
-    
+
     <!-- Chapter Navigation -->
     <nav class="chapter-nav" id="chapterNav" aria-label="Chapter navigation">
         <div class="nav-content">
@@ -77,113 +85,103 @@
             </div>
         </div>
     </nav>
-    
+
     <!-- Hero -->
     <header class="hero">
         <div class="hero-content">
             <h1>How Canadian Universities Represent Postgraduate Opportunities for West Africa</h1>
             <p class="subtitle">Every year, 122,000 students apply to study in Canada. Behind each application is a carefully crafted story about who belongs and what's possible.</p>
             <p class="byline">By Delali Mac-Addo</p>
+            <p class="reading-time">6 min read</p>
         </div>
         <div class="scroll-indicator" aria-hidden="true"></div>
     </header>
-    
-    <!-- ✅ FIX #2: Main content with proper ID for skip link -->
+
     <main id="main-content">
-        <!-- ✅ FIX #2: Added section with H2 for proper heading hierarchy -->
         <section aria-labelledby="intro-heading">
             <h2 id="intro-heading" class="visually-hidden">Introduction</h2>
             <div class="content-section" id="intro">
                 <p class="intro-graph first">
-                    Picture this: You're 25, scrolling Instagram in Lagos or Accra. You see a student who looks like you. They're wearing kente cloth at graduation. They're from Ondo State, Nigeria—maybe the same place as your cousin. They started a business. They're thriving.
+                    <span class="drop-cap">M</span>illions of young people scroll through posts shared by universities featuring stories of campus life, graduations, and student achievements. These posts don't just document success. They shape imagination.
+                </p>
+                <p class="intro-graph">
+                    Picture this: You're 25, scrolling Instagram. You see someone who feels familiar—whose roots, identity, or culture mirror your own. They are wearing familiar regalia at graduation. They are from your city or hometown—maybe even the same town where your family is known. They have started a thriving business that solves real problems. In that moment, they embody your idea of a successful career.
                 </p>
                 <p class="intro-graph">
                     The caption says: "Discover how the university helped make it happen."
                 </p>
                 <p class="intro-graph">
-                    That post? It's not an accident.
+                    That post isn't random. It's a calculated part of a larger pattern in how postgraduate opportunity is represented.
                 </p>
                 <div class="stat-callout">
-                    In 2023, Immigration, Refugees and Citizenship Canada processed nearly <strong>122,000 study permit applications</strong> from Nigeria, Ghana, and Cameroon. Each one represents a dream. A family's savings. A vision of the future.
+                    Between January and September 2024, nearly 122,000 study permit applications were processed from Cameroon, Côte d'Ivoire, Ghana, Guinea, and Nigeria. Each one represents a vision of the future.
                 </div>
                 <p class="intro-graph">
-                    But here's what we don't usually ask: <em>How do universities shape that vision?</em> What makes a 25-year-old in West Africa believe that studying in Canada is not just possible, but meant for them?
+                    But here is what we don't usually ask: <em>How do universities shape that vision?</em> What makes a 25-year-old in West Africa believe that studying in Canada is not just possible, but specifically meant for them?
                 </p>
                 <p class="intro-graph">
-                    I spent months analyzing the Instagram feeds, websites, LinkedIn, Youtube videos and promotional content of two major Canadian universities. I looked at what they post, who they feature, and how they tell stories about postgraduate opportunity.
+                    I spent months analyzing the Instagram feeds, websites, LinkedIn posts, and YouTube videos of two major Canadian universities. What I found wasn't a collection of random stories. It was a system.
                 </p>
+                <h3 class="intro-graph" style="font-size:1.6rem; font-weight:600; margin-bottom:0.5rem;">The Three-Layer Narrative</h3>
                 <p class="intro-graph">
-                    What I found wasn't random. It was a system. A three-layer narrative structure that appears again and again, post after post, story after story.
+                    This system appears again, post after post. It is the formula through which opportunity is framed by universities.
                 </p>
                 <div class="stat-highlight">
-                    <strong>Layer One:</strong> They show you someone who looks like you.<br>
-                    <strong>Layer Two:</strong> They show you what that person achieved.<br>
-                    <strong>Layer Three:</strong> They tell you where it happened.
+                    <strong>1. Layer 1 (Identity):</strong> They show you someone who shares similar identities to yours.<br>
+                    <strong>2. Layer 2 (Achievement):</strong> They show you what that person achieved.<br>
+                    <strong>3. Layer 3 (Affiliation):</strong> They tell you exactly where it happened.
                 </div>
                 <p class="intro-graph">
-                    This is how opportunity is represented. Not through facts or statistics or program descriptions. Through <strong>recognition. Achievement. Affiliation.</strong>
+                    This is how opportunity is represented. Not through facts, statistics, or program descriptions, but through <strong>Identity, Achievement, and Affiliation.</strong>
                 </p>
                 <p class="intro-graph">
-                    And it works because it taps into something deeper than logic. It shapes <em>imagination</em> itself—what you believe is possible, who you see yourself becoming, and where you think you belong.
+                    It works because it taps into something deeper than logic. It shapes <em>imagination</em> itself: what you believe is possible, who you see yourself becoming, and where you feel you belong.
                 </p>
                 <p class="intro-graph">
-                    Scroll down. I'll show you exactly how it works. <span class="scroll-arrow" aria-hidden="true">&#8595;</span>
+                    Keep scrolling. Pay special attention to the visuals along the way—they will show you exactly how this system works. <span class="scroll-arrow" aria-hidden="true">&#8595;</span>
                 </p>
             </div>
         </section>
-        
+
         <div class="media-collage" role="img" aria-label="Visual collage of university recruitment content targeting West African students">
             <div class="collage-grid">
-                <img src="Gallery/full%20width%20visual%20collage/IMG_1792.jpg" alt="University of Alberta student ambassador on campus" loading="lazy">
-                <img src="Gallery/full%20width%20visual%20collage/IMG_1793.jpg" alt="University of Alberta student on campus" loading="lazy">
-                <img src="Gallery/full%20width%20visual%20collage/IMG_1794.jpg" alt="University of Alberta medical student with stethoscope" loading="lazy">
-                <img src="Gallery/full%20width%20visual%20collage/IMG_1796.jpg" alt="University of Alberta student walking on campus" loading="lazy">
-                <img src="Gallery/full%20width%20visual%20collage/IMG_1797.jpg" alt="University of Alberta student with tablet" loading="lazy">
-                <img src="Gallery/full%20width%20visual%20collage/IMG_1795.jpg" alt="University of Alberta student holding Nigerian football jersey" loading="lazy">
-                <img src="Gallery/full%20width%20visual%20collage/IMG_1799.jpg" alt="University of Toronto graduate in traditional Cameroonian attire" loading="lazy">
-                <img src="Gallery/full%20width%20visual%20collage/IMG_1800.jpg" alt="University of Toronto graduation ceremony with kente stoles at Hart House" loading="lazy">
-                <img src="Gallery/full%20width%20visual%20collage/IMG_1801.jpg" alt="University of Toronto Black faculty and researchers" loading="lazy">
-                <img src="Gallery/full%20width%20visual%20collage/IMG_1802.jpg" alt="Olugbenga Olubanjo, University of Toronto alumnus and Reeddi founder" loading="lazy">
-                <img src="Gallery/full%20width%20visual%20collage/IMG_1803.AVIF" alt="University recruitment content targeting West African students" loading="lazy">
-                <img src="Gallery/full%20width%20visual%20collage/IMG_1804.AVIF" alt="University recruitment content targeting West African students" loading="lazy">
-                <img src="Gallery/full%20width%20visual%20collage/IMG_1805.AVIF" alt="University recruitment content targeting West African students" loading="lazy">
-                <img src="Gallery/full%20width%20visual%20collage/IMG_1806.AVIF" alt="University recruitment content targeting West African students" loading="lazy">
+                <img src="Gallery/full%20width%20visual%20collage/1.jpg" alt="Black community member featured at U of T event in Cameroonian Toghu regalia" data-caption="From selling peanuts to saving lives: U of T researcher Jude Kong uses AI to combat health misinformation across Africa." loading="lazy">
+                <img src="Gallery/full%20width%20visual%20collage/3.jpg" alt="UAlberta student Bobola holding a Nigerian national football jersey on campus" data-caption="Bobola is a recent Civil-Environmental Engineering graduate from Ondo, Nigeria. He was Vice-President Internal for the Nigerian Students' Association." loading="lazy">
+                <img src="Gallery/full%20width%20visual%20collage/4.jpg" alt="UAlberta student Faith with Apple Pencil and tablet in blazer" data-caption="Faith is a recent Psychology graduate from Ondo State, Nigeria. Through the Community Service Learning program, she volunteered with Lady Flower Gardens, Volunteer Alberta, and the Campus Food Bank." loading="lazy">
+                <img src="Gallery/full%20width%20visual%20collage/5.jpg" alt="UAlberta nursing student Gabrielle with stethoscope" data-caption="Gabrielle is a third-year Honors Nursing student from Nigeria and recipient of the President's International Distinction Scholarship. She plans to channel her passion for caring into a career as a medical doctor." loading="lazy">
+                <img src="Gallery/full%20width%20visual%20collage/6.jpg" alt="U of T alumnus Olugbenga Olubanjo, founder of Reeddi, holding a solar-powered battery" data-caption="Award-winning startup Reeddi, founded by U of T alumnus Olugbenga Olubanjo, is sparking innovation and economic opportunities with reliable, affordable grid-free electricity." loading="lazy">
+                <img src="Gallery/full%20width%20visual%20collage/7.AVIF" alt="U of T Black Grad event celebration" data-caption="U of T student-run Black Grad event celebrates community, culture and excellence." loading="lazy">
+                <img src="Gallery/full%20width%20visual%20collage/13.jpg" alt="U of T Black History Month Luncheon with community members sharing food" data-caption="U of T's annual Black History Month Luncheon drew hundreds from across the university's three campuses to share food, celebrate Black history and excellence — and build community." loading="lazy">
+                <img src="Gallery/full%20width%20visual%20collage/11.jpg" alt="Three Black women scholars featured by U of T for Black health research" data-caption="Scholars from U of T and Dalhousie University have created online courses on Black health and anti-Black racism in the Canadian health-care system." loading="lazy">
             </div>
         </div>
-        
+
         <!-- Section Divider -->
-        <div class="section-divider" role="presentation" aria-label="Section divider: Layer One">
-            <div class="divider-text">Layer One</div>
+        <div class="section-divider" aria-hidden="true">
+            <div class="divider-text">Identity</div>
         </div>
-        
-        <!-- ✅ FIX #2: Layer 1 with proper H2 heading hierarchy -->
+
         <section aria-labelledby="layer1-heading">
             <div class="content-section" id="layer1">
                 <div class="layer-header">
-                    <div class="layer-number">Layer One</div>
-                    <h2 id="layer1-heading" class="layer-title">Someone Like You</h2>
+                    <div class="layer-number">Identity</div>
+                    <h2 id="layer1-heading" class="layer-title">Cultural Proximity</h2>
                     <p class="layer-subtitle">"I see myself in this."</p>
                 </div>
                 <p class="intro-graph">
-                    Scroll through these universities' Instagram accounts and you'll notice something.
+                    Universities deliberately highlight names, home cities, and cultural markers to make African identities visible and integral to campus life and postgraduate opportunities. Their content repeatedly links specific cities, cultures, and nationalities to the institution itself.
                 </p>
                 <p class="intro-graph">
-                    The posts targeting West African audiences don't lead with program details or admission requirements. They lead with <strong>faces. Names. Places.</strong>
+                    They bridge the geographical distance between themselves and potential students in West Africa by highlighting familiar themes. They address this distance visually, using the food, languages, and traditions of people from the same origin who are now part of the institution: the people I call cultural ambassadors.
                 </p>
                 <p class="intro-graph">
-                    "From Lagos." "From Accra." "From Ondo State, Nigeria."
-                </p>
-                <p class="intro-graph">
-                    You see students in traditional clothing. References to home countries. Cultural organizations. Food from back home celebrated during Black History Month. Kente stoles at graduation.
-                </p>
-                <p class="intro-graph">
-                    These aren't random details. They're deliberate signals: <em>This place knows where you're from. This place sees you.</em>
+                    By deploying familiarity—language that resonates and faces that reflect shared backgrounds—they turn an abstract 'study abroad' dream into something tangible.
                 </p>
                 <p class="pullquote">
-                    The message is simple: "Someone like me has already done this."
+                    The message is clear: "Someone like you has already done this."
                 </p>
                 <p class="intro-graph">
-                    Recognition comes first. Before you even think about applying, you need to believe this pathway is meant for people like you.
+                    Watch how the University of Toronto uses something as simple as a recipe for Ghana Red Red or cultural regalia at a graduation ceremony.
                 </p>
             </div>
         </section>
@@ -251,17 +249,16 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Section Divider -->
-        <div class="section-divider" role="presentation" aria-label="Section divider: Layer Two">
-            <div class="divider-text">Layer Two</div>
+        <div class="section-divider" aria-hidden="true">
+            <div class="divider-text">Achievement</div>
         </div>
-        
-        <!-- ✅ FIX #2: Layer 2 with proper H2 heading hierarchy -->
+
         <section aria-labelledby="layer2-heading">
             <div class="content-section" id="layer2">
                 <div class="layer-header">
-                    <div class="layer-number">Layer Two</div>
+                    <div class="layer-number">Achievement</div>
                     <h2 id="layer2-heading" class="layer-title">Look What's Possible</h2>
                     <p class="layer-subtitle">"This could be my story."</p>
                 </div>
@@ -269,65 +266,64 @@
                     Once you see yourself in the story, the universities show you what's possible.
                 </p>
                 <p class="intro-graph">
-                    Not with vague promises. With <strong>proof.</strong>
+                    Not with vague promises but with <strong>undeniable proof.</strong>
                 </p>
                 <p class="intro-graph">
-                    A Nigerian graduate named Olugbenga launches Reeddi, a clean-energy company. The number is right there in the post: <strong>3,000+ households and businesses</strong> in Nigeria now have electricity because of his work.
-                </p>
-                <p class="intro-graph">
-                    Faith, from Ondo State, graduates with a psychology degree. But the post doesn't stop there. It shows her building a photography business. Getting involved in community service. Moving into postgraduate study.
-                </p>
-                <p class="intro-graph">
-                    These aren't statistics. They're people. With names. With faces. With measurable results.
-                </p>
-                <p class="pullquote">
-                    Opportunity stops being abstract. It becomes real. Visible. Possible.
+                    The University of Toronto featured a Nigerian graduate named Olugbenga who launched Reeddi, a clean-energy company. <strong>"3,000+ households and businesses in Nigeria now have electricity because of his work."</strong>
                 </p>
             </div>
         </section>
-        
+
         <div class="media-embed">
             <div class="embed-container">
-                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7386030016213602304?compact=1" 
-                        height="399" 
-                        width="100%" 
-                        frameborder="0" 
-                        allowfullscreen 
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7386030016213602304?compact=1"
+                        height="399"
+                        width="100%"
+                        allowfullscreen
                         title="University of Toronto post featuring Olugbenga Olubanjo and Reeddi"
-                        loading="lazy"></iframe>
+                        loading="lazy"
+                        sandbox="allow-scripts allow-same-origin allow-popups"
+                        referrerpolicy="no-referrer"></iframe>
             </div>
         </div>
-        
-        <section>
-            <div class="content-section" style="padding-top: 2rem;">
+
+        <section aria-label="Faith introduction">
+            <div class="content-section compact">
                 <p class="intro-graph">
-                    Notice what just happened. You didn't read a program description. You didn't see admission requirements. You saw <em>someone succeed.</em> Someone with a name. A country. A specific, measurable impact.
-                </p>
-                <p class="intro-graph">
-                    That's the power of Layer Two. Achievement becomes the evidence. Success becomes the proof.
+                    The University of Alberta featured Faith, from Ondo State, graduating with a psychology degree. But the post doesn't stop there. It highlights her running photography business.
                 </p>
             </div>
         </section>
-        
+
         <div class="media-embed single-image-embed">
             <div class="embed-container single-image-container">
-                <img src="Gallery/faith/Screenshot%202026-01-22%20at%2016.59.27.png"
+                <img src="Gallery/faith/Screenshot%202026-01-22%20at%2016.59.27.jpg"
                      alt="Instagram post from University of Alberta featuring Faith, a Psychology graduate from Ondo State, Nigeria, who also runs a photography business and is involved in community service"
                      loading="lazy">
                 <p class="image-caption">University of Alberta — Faith from Ondo State, Nigeria. Psychology graduate, photographer, community volunteer.</p>
             </div>
         </div>
-        
+
+        <section aria-label="Layer Two reflection">
+            <div class="content-section compact">
+                <p class="intro-graph">
+                    Opportunity stops being abstract. It becomes real. Visible. Possible.
+                </p>
+                <p class="intro-graph">
+                    They showed you someone like you succeeding — with specific, measurable impact. The universities let achievement speak for itself. Success becomes the proof.
+                </p>
+            </div>
+        </section>
+
         <!-- Section Divider -->
-        <div class="section-divider" role="presentation" aria-label="Section divider: Layer Three">
-            <div class="divider-text">Layer Three</div>
+        <div class="section-divider" aria-hidden="true">
+            <div class="divider-text">Affiliation</div>
         </div>
-        
-        <!-- ✅ FIX #2: Layer 3 with proper H2 heading hierarchy -->
+
         <section aria-labelledby="layer3-heading">
             <div class="content-section" id="layer3">
                 <div class="layer-header">
-                    <div class="layer-number">Layer Three</div>
+                    <div class="layer-number">Affiliation</div>
                     <h2 id="layer3-heading" class="layer-title">And Here's Where It Happens</h2>
                     <p class="layer-subtitle">"I know where to go."</p>
                 </div>
@@ -335,7 +331,7 @@
                     Now watch what happens in the captions.
                 </p>
                 <p class="intro-graph">
-                    After showing you Olugbenga's success, the post pivots: <em>"Discover how U of T helped Olugbenga make Reeddi happen through resources, community, and technical support."</em>
+                    After showing you Olugbenga's success, the university pivots: <em>"Discover how U of T helped Olugbenga make Reeddi happen through resources, community, and technical support."</em>
                 </p>
                 <p class="intro-graph">
                     The university isn't just a location. It's the <strong>reason</strong> the success happened.
@@ -356,18 +352,18 @@
                 </p>
             </div>
         </section>
-        
+
         <div class="media-embed single-image-embed">
             <div class="embed-container single-image-container">
-                <img src="Gallery/institution/Screenshot%202026-01-27%20at%2010.47.56.png"
+                <img src="Gallery/institution/Screenshot%202026-01-27%20at%2010.47.56.jpg"
                      alt="University of Toronto LinkedIn post featuring campus skyline with CN Tower and the text 'Do it here' — an example of Layer Three institutional branding and direction"
                      loading="lazy">
                 <p class="image-caption">University of Toronto — "Do it here." The institution becomes the destination. Layer Three in action.</p>
             </div>
         </div>
-        
+
         <!-- Summary -->
-        <section>
+        <section aria-label="Three layers summary">
             <div class="content-section">
                 <p class="intro-graph large">
                     Three layers. Every time.
@@ -397,9 +393,9 @@
                 </p>
             </div>
         </section>
-        
+
         <!-- What This Means -->
-        <section>
+        <section aria-label="What this means">
             <div class="content-section">
                 <p class="intro-graph large">
                     But here's what we need to talk about.
@@ -422,8 +418,7 @@
                 </div>
             </div>
         </section>
-        
-        <!-- ✅ FIX #2: Conclusion with proper H2 heading hierarchy -->
+
         <section aria-labelledby="conclusion-heading">
             <div class="content-section" id="conclusion">
                 <h2 id="conclusion-heading" class="visually-hidden">Conclusion</h2>
@@ -436,19 +431,19 @@
                 <p class="intro-graph">
                     And that vision? It's shaped by posts like these. By the stories universities choose to tell. By who gets to be visible and who stays in the background.
                 </p>
-                <p class="intro-graph" style="text-align: center; font-size: 1.5rem; margin: 3rem 0; font-style: italic;">
+                <p class="intro-graph centered-italic">
                     Recognition. Achievement. Direction.
                 </p>
                 <p class="intro-graph">
                     That's the formula. That's how opportunity gets sold.
                 </p>
-                <p class="pullquote" style="text-align: center; border: none; padding: 0; margin-top: 4rem;">
+                <p class="pullquote centered">
                     What you see shapes what you believe is possible. And that shaping of imagination? That might be the most powerful form of representation there is.
                 </p>
             </div>
         </section>
     </main>
-    
+
     <!-- References -->
     <footer class="references-section">
         <div class="references-content">
@@ -462,7 +457,7 @@
             </ul>
         </div>
     </footer>
-    
+
     <!-- Image Preview Lightbox -->
     <div id="imageLightbox" class="lightbox" role="dialog" aria-label="Image preview" aria-hidden="true">
         <div class="lightbox-backdrop"></div>
@@ -470,15 +465,14 @@
         <button class="lightbox-prev" aria-label="Previous image">&#8249;</button>
         <button class="lightbox-next" aria-label="Next image">&#8250;</button>
         <div class="lightbox-content">
-            <img class="lightbox-img" src="" alt="">
+            <img class="lightbox-img" alt="">
             <div class="lightbox-caption"></div>
             <div class="lightbox-counter"></div>
         </div>
     </div>
 
-    <!-- ✅ Scripts moved to external files for better caching -->
     <script src="main.js"></script>
-    <script src="instagram-lazy-loader.js"></script>
+
     <script src="preview.js"></script>
 </body>
 </html>
