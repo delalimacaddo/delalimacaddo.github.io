@@ -919,7 +919,15 @@ ul.intro-graph li {
 }
 
 .theory-layer {
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.theory-layer:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
 }
 
 .theory-layer h4 {
