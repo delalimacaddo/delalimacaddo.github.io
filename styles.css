@@ -621,6 +621,28 @@ button:focus,
     color: rgba(226, 232, 240, 0.7);
 }
 
+.side-by-side-videos {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.side-by-side-videos .video-container {
+    flex: 1;
+    max-width: 50%;
+}
+
+@media (max-width: 768px) {
+    .side-by-side-videos {
+        flex-direction: column;
+        align-items: center;
+    }
+    .side-by-side-videos .video-container {
+        max-width: 100%;
+    }
+}
+
 /* ============================================
    SINGLE IMAGE EMBED
    ============================================ */
