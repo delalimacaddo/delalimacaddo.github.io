@@ -918,31 +918,24 @@ ul.intro-graph li {
     color: var(--color-accent);
 }
 
-.theory-subtitle {
-    text-align: center;
-    font-size: 1.05rem;
-    margin-bottom: 2rem;
-    opacity: 0.85;
+.theory-layer {
+    margin-bottom: 2.5rem;
 }
 
-.theory-list {
-    list-style: none;
-    padding: 0;
-}
-
-.theory-list li {
-    margin-bottom: 1.5rem;
-    padding-left: 1.8rem;
-    position: relative;
-    line-height: 1.7;
-    font-size: 1.05rem;
-}
-
-.theory-list li::before {
-    content: '\2022';
-    position: absolute;
-    left: 0;
+.theory-layer h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-family: var(--font-sans);
     color: var(--color-accent);
+    margin-bottom: 0.8rem;
+}
+
+.theory-layer p {
+    line-height: 1.8;
+    font-size: 1.05rem;
+    opacity: 0.9;
 }
 
 /* ============================================
