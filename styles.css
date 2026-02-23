@@ -868,6 +868,84 @@ ul.intro-graph li {
 }
 
 /* ============================================
+   THEORETICAL FOUNDATIONS (COLLAPSIBLE)
+   ============================================ */
+.theory-section {
+    background: linear-gradient(135deg, #0A1628 0%, #101D33 100%);
+    color: var(--color-text);
+    padding: 3rem 2rem 1rem;
+    text-align: center;
+}
+
+.theory-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.theory-toggle {
+    background: transparent;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    padding: 0.6rem 2rem;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    border-radius: 2px;
+}
+
+.theory-toggle:hover {
+    background: var(--color-accent);
+    color: #060D1A;
+}
+
+.theory-panel {
+    text-align: left;
+    margin-top: 2.5rem;
+    padding-bottom: 1rem;
+}
+
+.theory-panel h3 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    text-align: center;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: var(--font-sans);
+    color: var(--color-accent);
+}
+
+.theory-subtitle {
+    text-align: center;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+}
+
+.theory-list {
+    list-style: none;
+    padding: 0;
+}
+
+.theory-list li {
+    margin-bottom: 1.5rem;
+    padding-left: 1.8rem;
+    position: relative;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.theory-list li::before {
+    content: '\2022';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+}
+
+/* ============================================
    REFERENCES SECTION
    ============================================ */
 .references-section {

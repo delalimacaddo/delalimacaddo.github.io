@@ -251,6 +251,23 @@
     }
 
     // ============================================
+    // THEORY SECTION TOGGLE
+    // ============================================
+
+    function initTheoryToggle() {
+        const toggle = safeQuery('.theory-toggle');
+        const panel = safeQuery('#theoryPanel');
+        if (!toggle || !panel) return;
+
+        toggle.addEventListener('click', function() {
+            const isHidden = panel.hidden;
+            panel.hidden = !isHidden;
+            toggle.setAttribute('aria-expanded', isHidden);
+            toggle.textContent = isHidden ? 'Hide Theory' : 'See Theory';
+        });
+    }
+
+    // ============================================
     // INITIALIZATION
     // ============================================
 
@@ -261,6 +278,7 @@
             initScrollAnimations();
             initSmoothScroll();
             initKeyboardNav();
+            initTheoryToggle();
         } catch (error) {
             // silently handle error
         }
