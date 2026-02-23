@@ -700,6 +700,27 @@ button:focus,
 }
 
 /* ============================================
+   INLINE SMALL IMAGE
+   ============================================ */
+.inline-image-small {
+    max-width: 420px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.inline-image-small img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 768px) {
+    .inline-image-small {
+        max-width: 300px;
+    }
+}
+
+/* ============================================
    SINGLE IMAGE EMBED
    ============================================ */
 .single-image-container {
