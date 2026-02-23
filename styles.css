@@ -979,6 +979,22 @@ ul.intro-graph li {
     text-decoration: underline;
 }
 
+.site-colophon {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    line-height: 1.8;
+}
+
+.site-colophon p {
+    margin-bottom: 0.4rem;
+}
+
 /* ============================================
    IMAGE PREVIEW LIGHTBOX
    ============================================ */
