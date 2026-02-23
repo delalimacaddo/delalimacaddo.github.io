@@ -801,6 +801,27 @@ button:focus,
     }
 }
 
+/* Animated bullet list items (same as progression steps) */
+ul.intro-graph li {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.content-section.visible ul.intro-graph li:nth-child(1) {
+    animation: slideInLeft 0.8s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.content-section.visible ul.intro-graph li:nth-child(2) {
+    animation: slideInLeft 0.8s ease forwards;
+    animation-delay: 0.8s;
+}
+
+.content-section.visible ul.intro-graph li:nth-child(3) {
+    animation: slideInLeft 0.8s ease forwards;
+    animation-delay: 1.3s;
+}
+
 /* ============================================
    SCROLL ARROW ANIMATION
    ============================================ */
