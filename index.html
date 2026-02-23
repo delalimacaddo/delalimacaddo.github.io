@@ -191,20 +191,16 @@
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
 
                     <!-- Red Red Video -->
-                    <div class="embed-container video-container">
-                        <video controls preload="metadata" playsinline poster="Gallery/red%20red/red-red-thumb.jpg" aria-label="Video of Ghana Red Red dish featured by University of Toronto Food">
-                            <source src="Gallery/red%20red/red%20red.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                    <div class="embed-container video-container video-preview" role="button" tabindex="0" aria-label="Play video: Ghana Red Red dish featured by University of Toronto Food" data-src="Gallery/red%20red/red%20red.mp4" data-caption="UofT Food — Ghana Red Red, a traditional West African dish celebrated during Black History Month">
+                        <img src="Gallery/red%20red/red-red-thumb.jpg" alt="Ghana Red Red dish — Black History Month featuring Red Red by Chef Daniel">
+                        <div class="video-play-btn" aria-hidden="true"><span>&#9654;</span></div>
                         <p class="video-caption">UofT Food — Ghana Red Red, a traditional West African dish celebrated during Black History Month</p>
                     </div>
 
                     <!-- Kente Stoles Video -->
-                    <div class="embed-container video-container">
-                        <video controls preload="metadata" playsinline poster="Gallery/kente/kente-thumb.jpg" aria-label="Video of Kente cultural regalia at University of Toronto graduation ceremony">
-                            <source src="Gallery/reelsvideo.io_1771607535426.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                    <div class="embed-container video-container video-preview" role="button" tabindex="0" aria-label="Play video: Kente cultural regalia at University of Toronto graduation ceremony" data-src="Gallery/reelsvideo.io_1771607535426.mp4" data-caption="UofT — Kente regalia at a graduation ceremony">
+                        <img src="Gallery/kente/kente-thumb.jpg" alt="Kente regalia at University of Toronto graduation ceremony">
+                        <div class="video-play-btn" aria-hidden="true"><span>&#9654;</span></div>
                         <p class="video-caption">UofT — Kente regalia at a graduation ceremony</p>
                     </div>
 
@@ -438,6 +434,16 @@
             <img class="lightbox-img" alt="">
             <div class="lightbox-caption"></div>
             <div class="lightbox-counter"></div>
+        </div>
+    </div>
+
+    <!-- Video Lightbox -->
+    <div id="videoLightbox" class="lightbox" role="dialog" aria-label="Video player" aria-hidden="true">
+        <div class="lightbox-backdrop"></div>
+        <button class="lightbox-close" aria-label="Close video">&times;</button>
+        <div class="lightbox-content video-lightbox-content">
+            <video id="videoLightboxPlayer" controls playsinline></video>
+            <div class="lightbox-caption"></div>
         </div>
     </div>
 

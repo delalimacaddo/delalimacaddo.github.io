@@ -225,13 +225,108 @@
     }
 
     // ============================================
+    // VIDEO LIGHTBOX
+    // ============================================
+
+    var videoLightbox = null;
+    var videoPlayer = null;
+    var videoCaption = null;
+    var lastVideoTrigger = null;
+
+    function initVideoPreview() {
+        videoLightbox = document.getElementById('videoLightbox');
+        if (!videoLightbox) return;
+
+        videoPlayer = document.getElementById('videoLightboxPlayer');
+        videoCaption = videoLightbox.querySelector('.lightbox-caption');
+
+        var videoPreviews = Array.from(document.querySelectorAll('.video-preview'));
+        if (videoPreviews.length === 0) return;
+
+        videoPreviews.forEach(function(preview) {
+            preview.addEventListener('click', function() {
+                openVideoLightbox(preview);
+            });
+
+            preview.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openVideoLightbox(preview);
+                }
+            });
+        });
+
+        // Close button
+        var closeBtn = videoLightbox.querySelector('.lightbox-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeVideoLightbox);
+        }
+
+        // Close on backdrop click
+        videoLightbox.addEventListener('click', function(e) {
+            if (e.target === videoLightbox || e.target.classList.contains('lightbox-backdrop')) {
+                closeVideoLightbox();
+            }
+        });
+
+        // Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && videoLightbox.classList.contains('active')) {
+                closeVideoLightbox();
+            }
+        });
+    }
+
+    function openVideoLightbox(trigger) {
+        if (!videoLightbox || !videoPlayer) return;
+
+        lastVideoTrigger = trigger;
+        var src = trigger.getAttribute('data-src');
+        var caption = trigger.getAttribute('data-caption') || '';
+
+        videoPlayer.src = src;
+        if (videoCaption) videoCaption.textContent = caption;
+
+        videoLightbox.classList.add('active');
+        videoLightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        videoPlayer.play();
+
+        var closeBtn = videoLightbox.querySelector('.lightbox-close');
+        if (closeBtn) closeBtn.focus();
+    }
+
+    function closeVideoLightbox() {
+        if (!videoLightbox || !videoPlayer) return;
+
+        videoPlayer.pause();
+        videoPlayer.removeAttribute('src');
+        videoPlayer.load();
+
+        videoLightbox.classList.remove('active');
+        videoLightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+
+        if (lastVideoTrigger) {
+            lastVideoTrigger.focus();
+            lastVideoTrigger = null;
+        }
+    }
+
+    // ============================================
     // INITIALIZATION
     // ============================================
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initPreview);
-    } else {
+    function initAll() {
         initPreview();
+        initVideoPreview();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+        initAll();
     }
 
 })();
