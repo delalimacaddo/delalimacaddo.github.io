@@ -991,6 +991,16 @@ ul.intro-graph li {
     color: var(--color-accent);
 }
 
+.references-list a {
+    color: var(--color-primary);
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.references-list a:hover {
+    text-decoration: underline;
+}
+
 /* ============================================
    IMAGE PREVIEW LIGHTBOX
    ============================================ */
