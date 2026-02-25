@@ -373,6 +373,30 @@ button:focus,
 }
 
 /* ============================================
+   INTRO IMAGE
+   ============================================ */
+.intro-image {
+    margin: 2.5rem -2rem 2.5rem;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.intro-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    box-shadow: var(--shadow-lg);
+    filter: brightness(0.85);
+}
+
+@media (max-width: 768px) {
+    .intro-image {
+        margin: 2rem -1rem;
+    }
+}
+
+/* ============================================
    CALLOUTS & HIGHLIGHTS
    ============================================ */
 .stat-callout {
