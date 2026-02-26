@@ -10,13 +10,13 @@
 
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self';
-                   script-src 'self' 'sha256-u2r1cCNT6aZl0UTE7bvnZgo/NRHkcXOj3fQbdN4JyMc=' https://platform.linkedin.com;
-                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-                   font-src 'self' https://fonts.gstatic.com;
-                   frame-src https://www.linkedin.com;
-                   img-src 'self';
+                   script-src 'self' 'sha256-u2r1cCNT6aZl0UTE7bvnZgo/NRHkcXOj3fQbdN4JyMc=' https://platform.linkedin.com https://talk.hyvor.com;
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://talk.hyvor.com;
+                   font-src 'self' https://fonts.gstatic.com https://talk.hyvor.com;
+                   frame-src https://www.linkedin.com https://talk.hyvor.com;
+                   img-src 'self' https://talk.hyvor.com https://cdn.hyvor.com;
                    media-src 'self';
-                   connect-src 'self';
+                   connect-src 'self' https://talk.hyvor.com;
                    object-src 'none';
                    base-uri 'self';
                    form-action 'none';
@@ -413,6 +413,15 @@
         </section>
     </main>
 
+    <!-- Comments Section -->
+    <section class="comments-section" aria-labelledby="comments-heading">
+        <div class="comments-content">
+            <h3 id="comments-heading">Join the Conversation</h3>
+            <p class="comments-intro">What do you think about how universities represent opportunity? Share your perspective below.</p>
+            <hyvor-talk-comments website-id="YOUR_WEBSITE_ID" page-id="main-article" loading="lazy"></hyvor-talk-comments>
+        </div>
+    </section>
+
     <!-- Theoretical Foundations (collapsible) -->
     <section class="theory-section">
         <div class="theory-content">
@@ -474,5 +483,7 @@
     <script src="main.js"></script>
 
     <script src="preview.js"></script>
+
+    <script async src="https://talk.hyvor.com/embed/embed.js" type="module"></script>
 </body>
 </html>

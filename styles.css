@@ -949,6 +949,39 @@ ul.intro-graph li {
 }
 
 /* ============================================
+   COMMENTS SECTION
+   ============================================ */
+.comments-section {
+    background: var(--color-bg-alt);
+    padding: 4rem 2rem;
+    margin-top: var(--spacing-lg);
+}
+
+.comments-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.comments-section h3 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    text-align: center;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: var(--font-sans);
+    color: var(--color-accent);
+}
+
+.comments-intro {
+    text-align: center;
+    color: var(--color-text-light);
+    font-size: 1.05rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+/* ============================================
    REFERENCES SECTION
    ============================================ */
 .references-section {
