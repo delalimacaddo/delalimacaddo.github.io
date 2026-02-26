@@ -10,10 +10,10 @@
 
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self';
-                   script-src 'self' 'sha256-u2r1cCNT6aZl0UTE7bvnZgo/NRHkcXOj3fQbdN4JyMc=' https://platform.linkedin.com https://giscus.app;
+                   script-src 'self' 'sha256-u2r1cCNT6aZl0UTE7bvnZgo/NRHkcXOj3fQbdN4JyMc=' https://platform.linkedin.com https://cusdis.com;
                    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
                    font-src 'self' https://fonts.gstatic.com;
-                   frame-src https://www.linkedin.com https://giscus.app;
+                   frame-src https://www.linkedin.com https://cusdis.com;
                    img-src 'self';
                    media-src 'self';
                    connect-src 'self';
@@ -413,28 +413,21 @@
         </section>
     </main>
 
-    <!-- Comments Section (Giscus - powered by GitHub Discussions) -->
+    <!-- Comments Section (Cusdis - no sign-up required) -->
     <section class="comments-section" aria-labelledby="comments-heading">
         <div class="comments-content">
             <h3 id="comments-heading">Share Your Experience</h3>
             <p class="comments-intro">Have you studied abroad, applied to a Canadian university, or seen similar stories online? Add your experience below so others can learn from you.</p>
-            <div class="giscus-wrapper">
-                <script src="https://giscus.app/client.js"
-                        data-repo="delalimacaddo/delalimacaddo.github.io"
-                        data-repo-id="R_kgDORRr-qg"
-                        data-category="General"
-                        data-category-id="DIC_kwDORRr-qs4C3RYo"
-                        data-mapping="pathname"
-                        data-strict="0"
-                        data-reactions-enabled="1"
-                        data-emit-metadata="0"
-                        data-input-position="bottom"
-                        data-theme="dark_dimmed"
-                        data-lang="en"
-                        data-loading="lazy"
-                        crossorigin="anonymous"
-                        async>
-                </script>
+            <div class="cusdis-wrapper">
+                <div id="cusdis_thread"
+                     data-host="https://cusdis.com"
+                     data-app-id="25d6ad87-ba2a-4a22-a32e-250eec7e11c9"
+                     data-page-id="home"
+                     data-page-url="https://delalimacaddo.github.io/"
+                     data-page-title="How Canadian Universities Represent Postgraduate Opportunities for West Africa"
+                     data-theme="dark">
+                </div>
+                <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
             </div>
         </div>
     </section>
