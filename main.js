@@ -269,6 +269,107 @@
 
 
     // ============================================
+    // COMMUNITY COMMENTS (LOCAL STORAGE)
+    // ============================================
+
+    function initCommunityComments() {
+        const form = safeQuery('#commentForm');
+        const nameInput = safeQuery('#commentName');
+        const experienceInput = safeQuery('#commentExperience');
+        const statusEl = safeQuery('#commentStatus');
+        const listEl = safeQuery('#commentList');
+
+        if (!form || !experienceInput || !listEl) return;
+
+        const storageKey = 'communityComments.v1';
+
+        function loadComments() {
+            try {
+                const stored = localStorage.getItem(storageKey);
+                if (!stored) return [];
+                const parsed = JSON.parse(stored);
+                return Array.isArray(parsed) ? parsed : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function saveComments(comments) {
+            try {
+                localStorage.setItem(storageKey, JSON.stringify(comments));
+            } catch (error) {
+                if (statusEl) {
+                    statusEl.textContent = 'Could not save your comment on this browser.';
+                }
+            }
+        }
+
+        function renderComments(comments) {
+            listEl.textContent = '';
+
+            if (comments.length === 0) {
+                const empty = document.createElement('li');
+                empty.className = 'comment-empty';
+                empty.textContent = 'No comments yet. Be the first to share your experience.';
+                listEl.appendChild(empty);
+                return;
+            }
+
+            comments.forEach(comment => {
+                const item = document.createElement('li');
+                item.className = 'comment-item';
+
+                const meta = document.createElement('p');
+                meta.className = 'comment-meta';
+                const safeName = comment.name ? comment.name : 'Anonymous';
+                const safeDate = comment.createdAt ? new Date(comment.createdAt).toLocaleDateString() : '';
+                meta.textContent = safeDate ? `${safeName} · ${safeDate}` : safeName;
+
+                const body = document.createElement('p');
+                body.className = 'comment-body';
+                body.textContent = comment.experience || '';
+
+                item.appendChild(meta);
+                item.appendChild(body);
+                listEl.appendChild(item);
+            });
+        }
+
+        const comments = loadComments();
+        renderComments(comments);
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const experience = experienceInput.value.trim();
+            const name = nameInput ? nameInput.value.trim() : '';
+
+            if (!experience) {
+                if (statusEl) {
+                    statusEl.textContent = 'Please share your experience before posting.';
+                }
+                experienceInput.focus();
+                return;
+            }
+
+            const nextComment = {
+                name: name.slice(0, 60),
+                experience: experience.slice(0, 600),
+                createdAt: new Date().toISOString()
+            };
+
+            comments.unshift(nextComment);
+            saveComments(comments);
+            renderComments(comments);
+            form.reset();
+
+            if (statusEl) {
+                statusEl.textContent = 'Thanks! Your comment has been added.';
+            }
+        });
+    }
+
+    // ============================================
     // INITIALIZATION
     // ============================================
 
@@ -280,6 +381,7 @@
             initSmoothScroll();
             initKeyboardNav();
             initTheoryToggle();
+            initCommunityComments();
         } catch (error) {
             // silently handle error
         }
