@@ -1041,15 +1041,6 @@ ul.intro-graph li {
     color: #060D1A;
 }
 
-.comments-disclaimer {
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
-    color: var(--color-text-light);
-    opacity: 0.6;
-    text-align: center;
-    margin-bottom: 2.5rem;
-}
-
 .community-comments-title {
     font-family: var(--font-sans);
     font-size: 0.85rem;
