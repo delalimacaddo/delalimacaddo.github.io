@@ -10,10 +10,10 @@
 
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self';
-                   script-src 'self' 'sha256-u2r1cCNT6aZl0UTE7bvnZgo/NRHkcXOj3fQbdN4JyMc=' https://platform.linkedin.com;
+                   script-src 'self' 'sha256-u2r1cCNT6aZl0UTE7bvnZgo/NRHkcXOj3fQbdN4JyMc=' https://platform.linkedin.com https://cusdis.com;
                    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
                    font-src 'self' https://fonts.gstatic.com;
-                   frame-src https://www.linkedin.com;
+                   frame-src https://www.linkedin.com https://cusdis.com;
                    img-src 'self';
                    media-src 'self';
                    connect-src 'self';
@@ -413,23 +413,21 @@
         </section>
     </main>
 
-    <!-- Comments Section -->
+    <!-- Comments Section (Cusdis - no sign-up required) -->
     <section class="comments-section" aria-labelledby="comments-heading">
         <div class="comments-content">
             <h3 id="comments-heading">Share Your Experience</h3>
             <p class="comments-intro">Have you studied abroad, applied to a Canadian university, or seen similar stories online? Add your experience below so others can learn from you.</p>
-            <div class="comment-form">
-                <label for="commentName" class="comment-label">Name (optional)</label>
-                <input type="text" id="commentName" class="comment-input" maxlength="50" autocomplete="off">
-                <label for="commentText" class="comment-label">Your experience</label>
-                <textarea id="commentText" class="comment-textarea" rows="4" maxlength="1000"></textarea>
-                <button type="button" id="commentSubmit" class="comment-submit">Post Comment</button>
-            </div>
-            <div class="community-comments">
-                <h4 class="community-comments-title">Community Comments</h4>
-                <div id="commentsList" class="comments-list">
-                    <p class="no-comments">No comments yet. Be the first to share your experience.</p>
+            <div class="cusdis-wrapper">
+                <div id="cusdis_thread"
+                     data-host="https://cusdis.com"
+                     data-app-id="25d6ad87-ba2a-4a22-a32e-250eec7e11c9"
+                     data-page-id="home"
+                     data-page-url="https://delalimacaddo.github.io/"
+                     data-page-title="How Canadian Universities Represent Postgraduate Opportunities for West Africa"
+                     data-theme="dark">
                 </div>
+                <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
             </div>
         </div>
     </section>
