@@ -10,13 +10,13 @@
 
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self';
-                   script-src 'self' 'sha256-u2r1cCNT6aZl0UTE7bvnZgo/NRHkcXOj3fQbdN4JyMc=' https://platform.linkedin.com https://talk.hyvor.com;
-                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://talk.hyvor.com;
-                   font-src 'self' https://fonts.gstatic.com https://talk.hyvor.com;
-                   frame-src https://www.linkedin.com https://talk.hyvor.com;
-                   img-src 'self' https://talk.hyvor.com https://cdn.hyvor.com;
+                   script-src 'self' 'sha256-u2r1cCNT6aZl0UTE7bvnZgo/NRHkcXOj3fQbdN4JyMc=' https://platform.linkedin.com;
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                   font-src 'self' https://fonts.gstatic.com;
+                   frame-src https://www.linkedin.com;
+                   img-src 'self';
                    media-src 'self';
-                   connect-src 'self' https://talk.hyvor.com;
+                   connect-src 'self';
                    object-src 'none';
                    base-uri 'self';
                    form-action 'none';
@@ -416,9 +416,22 @@
     <!-- Comments Section -->
     <section class="comments-section" aria-labelledby="comments-heading">
         <div class="comments-content">
-            <h3 id="comments-heading">Join the Conversation</h3>
-            <p class="comments-intro">What do you think about how universities represent opportunity? Share your perspective below.</p>
-            <hyvor-talk-comments website-id="YOUR_WEBSITE_ID" page-id="main-article" loading="lazy"></hyvor-talk-comments>
+            <h3 id="comments-heading">Share Your Experience</h3>
+            <p class="comments-intro">Have you studied abroad, applied to a Canadian university, or seen similar stories online? Add your experience below so others can learn from you.</p>
+            <div class="comment-form">
+                <label for="commentName" class="comment-label">Name (optional)</label>
+                <input type="text" id="commentName" class="comment-input" maxlength="50" autocomplete="off">
+                <label for="commentText" class="comment-label">Your experience</label>
+                <textarea id="commentText" class="comment-textarea" rows="4" maxlength="1000"></textarea>
+                <button type="button" id="commentSubmit" class="comment-submit">Post Comment</button>
+            </div>
+            <p class="comments-disclaimer">Comments are stored in your browser on this device (no backend is connected yet).</p>
+            <div class="community-comments">
+                <h4 class="community-comments-title">Community Comments</h4>
+                <div id="commentsList" class="comments-list">
+                    <p class="no-comments">No comments yet. Be the first to share your experience.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -483,7 +496,5 @@
     <script src="main.js"></script>
 
     <script src="preview.js"></script>
-
-    <script async src="https://talk.hyvor.com/embed/embed.js" type="module"></script>
 </body>
 </html>
