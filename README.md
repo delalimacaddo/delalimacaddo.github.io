@@ -235,6 +235,12 @@ const observerOptions = {
 3. Fix any errors or warnings
 ```
 
+**Local Link Validation:**
+```bash
+python scripts/check_links.py
+```
+Checks all local `href`, `src`, and `poster` references in repository HTML files, including in-page anchor targets.
+
 **Accessibility Testing:**
 ```
 1. Use WAVE (https://wave.webaim.org/)
