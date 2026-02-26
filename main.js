@@ -370,6 +370,82 @@
     }
 
     // ============================================
+    // COMMENTS (localStorage)
+    // ============================================
+
+    var COMMENTS_KEY = 'site_comments';
+
+    function loadComments() {
+        try {
+            return JSON.parse(localStorage.getItem(COMMENTS_KEY)) || [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function saveComments(comments) {
+        try {
+            localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments));
+        } catch (error) {
+            // storage full or unavailable
+        }
+    }
+
+    function renderComments() {
+        var list = safeQuery('#commentsList');
+        if (!list) return;
+
+        var comments = loadComments();
+
+        if (comments.length === 0) {
+            list.innerHTML = '<p class="no-comments">No comments yet. Be the first to share your experience.</p>';
+            return;
+        }
+
+        var html = '';
+        comments.forEach(function(c) {
+            var name = c.name ? c.name.replace(/</g, '&lt;').replace(/>/g, '&gt;') : 'Anonymous';
+            var body = c.text.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
+            var date = new Date(c.date).toLocaleDateString('en-US', {
+                year: 'numeric', month: 'short', day: 'numeric'
+            });
+            html += '<div class="comment-item">' +
+                '<div class="comment-author">' + name + '</div>' +
+                '<div class="comment-date">' + date + '</div>' +
+                '<div class="comment-body">' + body + '</div>' +
+                '</div>';
+        });
+        list.innerHTML = html;
+    }
+
+    function initComments() {
+        var submitBtn = safeQuery('#commentSubmit');
+        var nameInput = safeQuery('#commentName');
+        var textInput = safeQuery('#commentText');
+
+        if (!submitBtn || !textInput) return;
+
+        renderComments();
+
+        submitBtn.addEventListener('click', function() {
+            var text = textInput.value.trim();
+            if (!text) return;
+
+            var comments = loadComments();
+            comments.push({
+                name: nameInput ? nameInput.value.trim() : '',
+                text: text,
+                date: new Date().toISOString()
+            });
+            saveComments(comments);
+            renderComments();
+
+            textInput.value = '';
+            if (nameInput) nameInput.value = '';
+        });
+    }
+
+    // ============================================
     // INITIALIZATION
     // ============================================
 
@@ -381,7 +457,7 @@
             initSmoothScroll();
             initKeyboardNav();
             initTheoryToggle();
-            initCommunityComments();
+            initComments();
         } catch (error) {
             // silently handle error
         }

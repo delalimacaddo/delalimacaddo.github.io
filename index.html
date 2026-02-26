@@ -413,29 +413,24 @@
         </section>
     </main>
 
-    <!-- Community Comments -->
-    <section class="community-section" aria-labelledby="community-heading">
-        <div class="community-content">
-            <h3 id="community-heading">Share Your Experience</h3>
-            <p class="community-intro">Have you studied abroad, applied to a Canadian university, or seen similar stories online? Add your experience below so others can learn from you.</p>
-
-            <form id="commentForm" class="comment-form" novalidate>
-                <div class="comment-field">
-                    <label for="commentName">Name (optional)</label>
-                    <input id="commentName" name="name" type="text" maxlength="60" autocomplete="name" placeholder="Your name">
+    <!-- Comments Section -->
+    <section class="comments-section" aria-labelledby="comments-heading">
+        <div class="comments-content">
+            <h3 id="comments-heading">Share Your Experience</h3>
+            <p class="comments-intro">Have you studied abroad, applied to a Canadian university, or seen similar stories online? Add your experience below so others can learn from you.</p>
+            <div class="comment-form">
+                <label for="commentName" class="comment-label">Name (optional)</label>
+                <input type="text" id="commentName" class="comment-input" maxlength="50" autocomplete="off">
+                <label for="commentText" class="comment-label">Your experience</label>
+                <textarea id="commentText" class="comment-textarea" rows="4" maxlength="1000"></textarea>
+                <button type="button" id="commentSubmit" class="comment-submit">Post Comment</button>
+            </div>
+            <p class="comments-disclaimer">Comments are stored in your browser on this device (no backend is connected yet).</p>
+            <div class="community-comments">
+                <h4 class="community-comments-title">Community Comments</h4>
+                <div id="commentsList" class="comments-list">
+                    <p class="no-comments">No comments yet. Be the first to share your experience.</p>
                 </div>
-                <div class="comment-field">
-                    <label for="commentExperience">Your experience</label>
-                    <textarea id="commentExperience" name="experience" rows="4" maxlength="600" required placeholder="Share your journey, advice, or reflections..."></textarea>
-                </div>
-                <button type="submit" class="comment-submit">Post Comment</button>
-                <p id="commentStatus" class="comment-status" role="status" aria-live="polite"></p>
-                <p class="comment-disclaimer">Comments are stored in your browser on this device (no backend is connected yet).</p>
-            </form>
-
-            <div>
-                <h4 class="comment-list-heading">Community Comments</h4>
-                <ul id="commentList" class="comment-list" aria-live="polite"></ul>
             </div>
         </div>
     </section>
