@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Wealth OS</title>
+  <meta name="description" content="Personal financial management dashboard — accounts, transactions, budgets, goals, and net worth tracking.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-icon">W</span>
+      <span class="brand-text">Wealth OS</span>
+    </div>
+    <ul class="sidebar-nav" role="list">
+      <li><button class="nav-btn active" data-view="dashboard"><span class="nav-icon">&#9632;</span> Dashboard</button></li>
+      <li><button class="nav-btn" data-view="accounts"><span class="nav-icon">&#9881;</span> Accounts</button></li>
+      <li><button class="nav-btn" data-view="transactions"><span class="nav-icon">&#8644;</span> Transactions</button></li>
+      <li><button class="nav-btn" data-view="budgets"><span class="nav-icon">&#9783;</span> Budgets</button></li>
+      <li><button class="nav-btn" data-view="goals"><span class="nav-icon">&#9733;</span> Goals</button></li>
+      <li><button class="nav-btn" data-view="giving"><span class="nav-icon">&#9829;</span> Giving</button></li>
+    </ul>
+    <div class="sidebar-footer">
+      <button class="nav-btn" id="btnExport"><span class="nav-icon">&#8615;</span> Export</button>
+      <button class="nav-btn" id="btnImport"><span class="nav-icon">&#8613;</span> Import</button>
+      <input type="file" id="importFile" accept=".json" hidden>
+    </div>
+  </nav>
+
+  <!-- Mobile header -->
+  <header class="mobile-header" id="mobileHeader">
+    <button class="hamburger" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
+    <span class="mobile-title">Wealth OS</span>
+  </header>
+
+  <!-- Main content -->
+  <main class="main" id="main">
+
+    <!-- Dashboard View -->
+    <section class="view active" id="view-dashboard">
+      <div class="view-header">
+        <h1>Dashboard</h1>
+        <p class="view-subtitle" id="dashboardDate"></p>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card kpi-net-worth">
+          <div class="kpi-label">Net Worth</div>
+          <div class="kpi-value" id="kpiNetWorth">$0.00</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Income (This Month)</div>
+          <div class="kpi-value kpi-positive" id="kpiIncome">$0.00</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Expenses (This Month)</div>
+          <div class="kpi-value kpi-negative" id="kpiExpenses">$0.00</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Savings Rate</div>
+          <div class="kpi-value" id="kpiSavingsRate">0%</div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="panel">
+          <h2 class="panel-title">Accounts</h2>
+          <div id="dashAccountsList" class="dash-list"></div>
+        </div>
+        <div class="panel">
+          <h2 class="panel-title">Budget Progress</h2>
+          <div id="dashBucketsList" class="dash-list"></div>
+        </div>
+        <div class="panel">
+          <h2 class="panel-title">Recent Transactions</h2>
+          <div id="dashRecentTxns" class="dash-list"></div>
+        </div>
+        <div class="panel">
+          <h2 class="panel-title">Goal Progress</h2>
+          <div id="dashGoalsList" class="dash-list"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2 class="panel-title">Spending by Category</h2>
+        <div id="dashCategoryBreakdown" class="category-bars"></div>
+      </div>
+    </section>
+
+    <!-- Accounts View -->
+    <section class="view" id="view-accounts">
+      <div class="view-header">
+        <h1>Accounts</h1>
+        <button class="btn btn-primary" id="btnAddAccount">+ Add Account</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="accountsTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Institution</th>
+              <th>Currency</th>
+              <th>Balance</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="accountsBody"></tbody>
+        </table>
+        <div class="empty-state" id="accountsEmpty">No accounts yet. Add your first account to get started.</div>
+      </div>
+    </section>
+
+    <!-- Transactions View -->
+    <section class="view" id="view-transactions">
+      <div class="view-header">
+        <h1>Transactions</h1>
+        <button class="btn btn-primary" id="btnAddTransaction">+ Add Transaction</button>
+      </div>
+      <div class="filters-bar">
+        <select id="txnFilterAccount" class="input"><option value="">All Accounts</option></select>
+        <select id="txnFilterType" class="input">
+          <option value="">All Types</option>
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+          <option value="transfer">Transfer</option>
+        </select>
+        <input type="month" id="txnFilterMonth" class="input">
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="transactionsTable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Category</th>
+              <th>Account</th>
+              <th>Amount</th>
+              <th>Type</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="transactionsBody"></tbody>
+        </table>
+        <div class="empty-state" id="transactionsEmpty">No transactions yet. Add your first transaction to start tracking.</div>
+      </div>
+    </section>
+
+    <!-- Budgets View -->
+    <section class="view" id="view-budgets">
+      <div class="view-header">
+        <h1>Budget Buckets</h1>
+        <button class="btn btn-primary" id="btnAddBucket">+ Add Bucket</button>
+      </div>
+      <div class="cards-grid" id="bucketsGrid"></div>
+      <div class="empty-state" id="bucketsEmpty">No budget buckets yet. Create one to start organizing your finances.</div>
+    </section>
+
+    <!-- Goals View -->
+    <section class="view" id="view-goals">
+      <div class="view-header">
+        <h1>Financial Goals</h1>
+        <button class="btn btn-primary" id="btnAddGoal">+ Add Goal</button>
+      </div>
+      <div class="cards-grid" id="goalsGrid"></div>
+      <div class="empty-state" id="goalsEmpty">No goals yet. Set your first financial goal.</div>
+    </section>
+
+    <!-- Giving View -->
+    <section class="view" id="view-giving">
+      <div class="view-header">
+        <h1>Giving Funds</h1>
+        <button class="btn btn-primary" id="btnAddGivingFund">+ Add Fund</button>
+      </div>
+      <div class="cards-grid" id="givingGrid"></div>
+      <div class="empty-state" id="givingEmpty">No giving funds yet. Create one to track your generosity.</div>
+    </section>
+  </main>
+
+  <!-- Modal overlay -->
+  <div class="modal-overlay" id="modalOverlay" hidden>
+    <div class="modal" id="modal" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      </div>
+      <form class="modal-body" id="modalForm"></form>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="modalCancel">Cancel</button>
+        <button class="btn btn-primary" id="modalSave">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="db.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
