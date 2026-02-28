@@ -434,11 +434,48 @@ const DB = {
   },
 
   async importAll(data) {
+    if (typeof data !== 'object' || data === null) throw new Error('Invalid import data');
+
+    // Only allow known store keys
+    const allowedKeys = new Set(Object.keys(STORES));
+    for (const key of Object.keys(data)) {
+      if (!allowedKeys.has(key)) throw new Error(`Unknown data key: "${key}"`);
+    }
+
+    // Allowed enum values for validated fields
+    const enumValidation = {
+      accounts: { accountType: new Set(AccountTypes) },
+      transactions: { transactionType: new Set(TransactionTypes), direction: new Set(['inflow', 'outflow']), status: new Set(['pending', 'posted', 'cleared']) },
+      categories: { categoryType: new Set(CategoryTypes) },
+      goals: { goalType: new Set(GoalTypes), status: new Set(GoalStatuses) },
+    };
+
     for (const [key, storeName] of Object.entries(STORES)) {
-      if (data[key]) {
-        for (const record of data[key]) {
-          await dbPut(storeName, record);
+      if (!data[key]) continue;
+      if (!Array.isArray(data[key])) throw new Error(`"${key}" must be an array`);
+
+      for (const record of data[key]) {
+        if (typeof record !== 'object' || record === null || !record.id) {
+          throw new Error(`Invalid record in "${key}": missing id`);
         }
+
+        // Validate enum fields against allowed values
+        if (enumValidation[key]) {
+          for (const [field, allowed] of Object.entries(enumValidation[key])) {
+            if (record[field] !== undefined && !allowed.has(record[field])) {
+              throw new Error(`Invalid ${field} "${record[field]}" in ${key}`);
+            }
+          }
+        }
+
+        // Sanitize string fields — strip HTML tags as a safety net
+        for (const [field, value] of Object.entries(record)) {
+          if (typeof value === 'string' && field !== 'id' && field !== 'createdAt' && field !== 'updatedAt' && field !== 'transactionTs' && field !== 'postedDate' && field !== 'targetDate') {
+            record[field] = value.replace(/<[^>]*>/g, '');
+          }
+        }
+
+        await dbPut(storeName, record);
       }
     }
   },

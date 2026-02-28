@@ -148,7 +148,7 @@
       for (const acct of accounts.filter(a => a.isActive)) {
         const bal = await DB.getAccountBalance(acct.id);
         html += `<div class="dash-item">
-          <div><div class="dash-item-label">${escHtml(acct.accountName)}</div><div class="dash-item-sub">${acct.accountType}</div></div>
+          <div><div class="dash-item-label">${escHtml(acct.accountName)}</div><div class="dash-item-sub">${escHtml(acct.accountType)}</div></div>
           <div class="dash-item-value ${bal >= 0 ? 'positive' : 'negative'}">${fmt(bal, acct.currencyCode)}</div>
         </div>`;
       }
@@ -253,9 +253,9 @@
       const bal = await DB.getAccountBalance(acct.id);
       html += `<tr>
         <td><strong>${escHtml(acct.accountName)}</strong></td>
-        <td><span class="badge-pill badge-type">${acct.accountType}</span></td>
+        <td><span class="badge-pill badge-type">${escHtml(acct.accountType)}</span></td>
         <td>${escHtml(acct.institution || '—')}</td>
-        <td>${acct.currencyCode}</td>
+        <td>${escHtml(acct.currencyCode)}</td>
         <td class="amount-cell ${bal >= 0 ? 'inflow' : 'outflow'}">${fmt(bal, acct.currencyCode)}</td>
         <td><span class="badge-pill ${acct.isActive ? 'badge-active' : 'badge-inactive'}">${acct.isActive ? 'Active' : 'Closed'}</span></td>
         <td>
@@ -385,7 +385,7 @@
         <td>${escHtml(catName)}</td>
         <td>${escHtml(acctName)}</td>
         <td class="amount-cell ${cls}">${sign}${fmt(t.amount)}</td>
-        <td><span class="badge-pill badge-type">${t.transactionType}</span></td>
+        <td><span class="badge-pill badge-type">${escHtml(t.transactionType)}</span></td>
         <td>
           <button class="btn btn-sm btn-ghost" data-edit-txn="${t.id}">Edit</button>
           <button class="btn btn-sm btn-danger" data-delete-txn="${t.id}">Del</button>
@@ -533,7 +533,7 @@
             <button class="btn btn-sm btn-danger" data-delete-bucket="${b.id}">Del</button>
           </div>
         </div>
-        <div class="card-meta">${b.currencyCode} &middot; Priority: ${b.priorityRank}</div>
+        <div class="card-meta">${escHtml(b.currencyCode)} &middot; Priority: ${b.priorityRank}</div>
         <div class="progress-bar-wrap"><div class="progress-bar-fill ${pct >= 100 ? 'complete' : ''}" style="width:${pct}%"></div></div>
         <div class="progress-text">
           <span>${fmt(b.currentAmount, b.currencyCode)} saved</span>
@@ -648,8 +648,8 @@
           </div>
         </div>
         <div class="card-meta">
-          <span class="badge-pill badge-type">${g.goalType}</span>
-          <span class="badge-pill ${statusCls}">${g.status}</span>
+          <span class="badge-pill badge-type">${escHtml(g.goalType)}</span>
+          <span class="badge-pill ${statusCls}">${escHtml(g.status)}</span>
           ${g.targetDate ? ' &middot; Due ' + fmtDate(g.targetDate) : ''}
         </div>
         <div class="progress-bar-wrap"><div class="progress-bar-fill ${g.progressPct >= 100 ? 'complete' : ''}" style="width:${g.progressPct}%"></div></div>
@@ -777,7 +777,7 @@
             <button class="btn btn-sm btn-danger" data-delete-fund="${f.id}">Del</button>
           </div>
         </div>
-        <div class="card-meta">${f.currencyCode} ${f.targetPercent ? '&middot; Target: ' + f.targetPercent + '% of income' : ''}</div>
+        <div class="card-meta">${escHtml(f.currencyCode)} ${f.targetPercent ? '&middot; Target: ' + f.targetPercent + '% of income' : ''}</div>
         <div class="card-amount">${fmt(f.currentBalance, f.currencyCode)}</div>
       </div>`;
     }
