@@ -1,2 +1,34 @@
+# System
 .DS_Store
+Thumbs.db
+
+# Claude
 .claude/
+
+# Python — never belongs in a static site
+*.py
+*.pyc
+*.pyo
+__pycache__/
+*.egg-info/
+venv/
+.venv/
+
+# Databases — never belongs in a static site
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+*.mdb
+
+# Environment / secrets
+.env
+.env.*
+*.env
+secrets.*
+config.secret.*
+
+# Data exports that may contain PII
+*.csv
+*.pkl
+*.pickle
